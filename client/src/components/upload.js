@@ -4,7 +4,6 @@ import S3FileUpload from 'react-s3';
 //import Putdata from './Putdata.js';
 
 class Upload extends Component {
-  
   constructor(props){
     super(props);
     this.state = {

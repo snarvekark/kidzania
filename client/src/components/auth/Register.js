@@ -9,6 +9,7 @@ class Register extends Component {
     email: "",
     password: "",
     confirmpassword: "",
+    user_type:"",
     errors: {
       cognito: null,
       blankfield: false,
@@ -39,14 +40,15 @@ class Register extends Component {
     }
 
     // AWS Cognito integration here
-    const { username, email, password } = this.state;
+    const { username, email, password, user_type } = this.state;
     try {
       const signUpResponse = await Auth.signUp({
         username,
         password,
+        user_type: user_type,
         attributes: {
-          email: email
-        }
+          email: email,
+        },
       });
       this.props.history.push("/welcome");
       console.log(signUpResponse);
@@ -134,6 +136,19 @@ class Register extends Component {
                 <span className="icon is-small is-left">
                   <i className="fas fa-lock"></i>
                 </span>
+              </p>
+            </div>
+            <div className="field">
+              <p className="control">
+                <input 
+                  className="input" 
+                  type="text"
+                  id="user_type"
+                  aria-describedby="userTypeHelp"
+                  placeholder="Enter usertype"
+                  value={this.state.user_type}
+                  onChange={this.onInputChange}
+                />
               </p>
             </div>
             <div className="field">

@@ -57,9 +57,12 @@ class Dashboard extends React.Component {
             <div className="navbar-end">
               <div className="navbar-link">
                 {this.props.auth.isAuthenticated && this.props.auth.user && (
+                  <React.Fragment>
                   <p className="text-primary">
-                    Welcome, {this.props.auth.user.username}
+                    Welcome, {this.props.auth.user.username} , 
+                    {this.props.auth.user.username} 
                   </p>
+                  </React.Fragment>
                 )}
                 <div className="button button-primary">
                   {!this.props.auth.isAuthenticated && (
