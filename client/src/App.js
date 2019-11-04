@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
-  BrowserRouter as Router,
+  BrowserRouter as Router, 
   Link,
   Route,
   Switch
@@ -15,7 +15,8 @@ import ChangePasswordConfirm from './components/auth/ChangePasswordConfirm';
 import Welcome from './components/auth/Welcome';
 import LogIn from './components/auth/LogIn';
 import Register from './components/auth/Register';
-import Upload from './components/upload';
+import Teacher from './components/Teacher';
+import Parent from './components/Parent';
 import { Auth } from "aws-amplify";
 
 
@@ -73,7 +74,8 @@ state = {
 	              <Route exact path="/changepassword" render={(props) => <ChangePassword {...props} auth={authProps} />} />
 	              <Route exact path="/changepasswordconfirmation" render={(props) => <ChangePasswordConfirm {...props} auth={authProps} />} />
 	              <Route exact path="/welcome" render={(props) => <Welcome {...props} auth={authProps} />} />
-                <Route exact path="/upload" render={(props) => <Upload {...props} auth={authProps} />} />
+                <Route exact path="/Teacher" render={(props) => <Teacher {...props} auth={authProps} />} />
+                <Route exact path="/Parent" render={(props) => <Parent {...props} auth={authProps} />} />
                 
 	            </Switch>
 	          </div>

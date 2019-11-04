@@ -8,6 +8,18 @@ import {
 import { Auth } from "aws-amplify";
 
 class Dashboard extends React.Component {
+    handleLogIn = async event => {
+      event.preventDefault();
+      try {
+        Auth.currentAuthenticatedUser({
+          bypassCache: false  
+      }).then(user => console.log(user))
+      .catch(err => console.log(err));
+      }catch(error) {
+        console.log(error.message);
+      }
+    }
+
    handleLogOut = async event => {
     event.preventDefault();
     try {
@@ -33,23 +45,14 @@ class Dashboard extends React.Component {
             <div className="collapse navbar-collapse" id="collapsibleNavbar">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link" href="/home">Home</a>
+                  <Link to="/Home" className="btn btn-primary">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Teacher</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">Parent</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">Library</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">Action Words</a>
+                  <Link to="/Parent" className="btn btn-light">Parent</Link>
                 </li>
                 <li className="nav-item">
                   {this.props.auth.isAuthenticated && this.props.auth.user && (
-                  <a className="nav-link" href="/upload">Upload</a>
+                  <Link to="/Teacher" className="btn btn-primary">Teacher</Link>
                   )}
                 </li>    
               </ul>
@@ -59,26 +62,21 @@ class Dashboard extends React.Component {
                 {this.props.auth.isAuthenticated && this.props.auth.user && (
                   <React.Fragment>
                   <p className="text-primary">
-                    Welcome, {this.props.auth.user.username} , 
-                    {this.props.auth.user.username} 
+                    Welcome, {this.props.auth.user.username} , {this.props.auth.email} 
                   </p>
                   </React.Fragment>
                 )}
                 <div className="button button-primary">
                   {!this.props.auth.isAuthenticated && (
                     <div className="button button-primary">
-                      <a href="/register" className="navbar-brand">
-                        <strong>Register</strong>
-                      </a>
-                      <a href="/login" className="navbar-brand">
-                        Log in
-                      </a>
+                      <Link to="/Register" className="btn btn-primary">Register</Link>
+                      <Link to="/Login" className="btn btn-primary">Login</Link>
                     </div>
                   )}
                   {this.props.auth.isAuthenticated && (
-                    <a href="/" onClick={this.handleLogOut} className="button is-light">
-                      Log out
-                    </a>
+                     <Link to="/" onClick={this.handleLogOut} className="btn btn-primary">
+                      Log Out
+                    </Link>
                   )}
                 </div>
               </div>
