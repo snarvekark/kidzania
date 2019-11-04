@@ -39,7 +39,7 @@ public class S3BucketService {
 
 	private AmazonS3 s3;
 
-	private static final String AWS_BUCKET = "cloud-project-studentapp";
+	private static final String AWS_BUCKET = "globalcustbucket";
 
 	private static final String AWS_BUCKET_CDN = "https://cloud-project-studentapp.s3-us-west-1.amazonaws.com";
 
@@ -49,7 +49,7 @@ public class S3BucketService {
 		AwsBasicCredentials awsBasicCredentials = AwsBasicCredentials.create(key, secretKey);
 
 		s3Client = S3Client.builder().credentialsProvider(StaticCredentialsProvider.create(awsBasicCredentials))
-				.region(Region.US_WEST_2).build();
+				.region(Region.US_EAST_1).build();
 
 		AWSCredentials cred = new BasicAWSCredentials(key, secretKey);
 		s3 = new AmazonS3Client(cred);
@@ -72,6 +72,18 @@ public class S3BucketService {
 		return fileUrl;
 
 	}
+	
+	public void uploadFileWithTitle(File file, String title, String format, String username) {
+		try {
+			System.out.println("inside uploadFileWithTitle");
+			title=title+format;
+			System.out.println("title is " + title);
+			uploadFileTos3bucket(title, file, username);
+			file.delete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	private File convertMultiPartToFile(MultipartFile file) throws IOException {
 		File convFile = new File(file.getOriginalFilename());
@@ -86,7 +98,7 @@ public class S3BucketService {
 	}
 
 	private void uploadFileTos3bucket(String fileName, File file, String username) {
-		PutObjectResult putObject = s3.putObject("cloud-project-studentapp", username + "/" + fileName, file);
+		PutObjectResult putObject = s3.putObject(AWS_BUCKET, username + "/" + fileName, file);
 		System.out.println("uploadFileTos3bucket");
 		System.out.println(putObject.getETag());
 		System.out.println(putObject.getVersionId());
