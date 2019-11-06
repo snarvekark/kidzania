@@ -20,7 +20,6 @@ import Teacher from './components/Teacher';
 import Parent from './components/Parent';
 import { Auth } from "aws-amplify";
 
-
 class App extends React.Component
 {
 state = {
