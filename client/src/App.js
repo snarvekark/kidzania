@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router, 
-  Link,
   Route,
-  Switch
+  Switch,
+  Link
 } from 'react-router-dom';
+
 import Dashboard from './components/dashboard';
 import Home from './components/home';
 import ForgotPassword from './components/auth/ForgotPassword';
@@ -66,7 +67,7 @@ state = {
 	          <div>
 	            <Dashboard auth={authProps}/>
 	            <Switch>
-	              <Route exact path="/home" render={(props) => <Home {...props} auth={authProps} />} />
+	              <Route exact path="/" render={(props) => <Home {...props} auth={authProps} />} />
 	              <Route exact path="/login" render={(props) => <LogIn {...props} auth={authProps} />} />
 	              <Route exact path="/register" render={(props) => <Register {...props} auth={authProps} />} />
 	              <Route exact path="/forgotpassword" render={(props) => <ForgotPassword {...props} auth={authProps} />} />} />

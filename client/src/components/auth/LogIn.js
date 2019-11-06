@@ -2,15 +2,20 @@ import React, { Component } from 'react';
 import FormErrors from "../FormErrors";
 import Validate from "../utility/FormValidation";
 import { Auth } from "aws-amplify";
+import { Link, withRouter } from "react-router-dom";
 
 class LogIn extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+    this.state = {
     username: "",
     password: "",
+    data: "",
     errors: {
       cognito: null,
       blankfield: false
     }
+  }
   };
 
   clearErrorState = () => {
@@ -37,10 +42,21 @@ class LogIn extends Component {
     // AWS Cognito integration here
     try {
       const user = await Auth.signIn(this.state.username, this.state.password);
-      console.log(user);
+      //console.log(JSON.stringify(user));
       this.props.auth.setAuthStatus(true);
       this.props.auth.setUser(user);
-      this.props.history.push("/upload");
+      Auth.currentAuthenticatedUser()
+      .then(data => {
+       if(data.attributes.family_name === 'teacher')
+       {
+         this.props.history.push("/Teacher");
+       }
+       else
+       {
+        this.props.history.push("/Parent");
+       }
+      })
+      //this.props.history.push("/");
     }catch(error) {
       let err = null;
       !error.message ? err = { "message": error } : err = error;
@@ -115,4 +131,4 @@ class LogIn extends Component {
   }
 }
 
-export default LogIn;
+export default withRouter(LogIn);

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FormErrors from "../FormErrors";
 import Validate from "../utility/FormValidation";
 import { Auth } from "aws-amplify";
+import { Link, withRouter } from "react-router-dom";
 
 class Register extends Component {
   state = {
@@ -9,7 +10,7 @@ class Register extends Component {
     email: "",
     password: "",
     confirmpassword: "",
-    user_type:"",
+    family_name:"",
     errors: {
       cognito: null,
       blankfield: false,
@@ -40,15 +41,16 @@ class Register extends Component {
     }
 
     // AWS Cognito integration here
-    const { username, email, password, user_type } = this.state;
-    try {
+    const { username, email, password, family_name } = this.state;
+    try
+    {
       const signUpResponse = await Auth.signUp({
-        username,
-        password,
-        user_type: user_type,
-        attributes: {
-          email: email,
-        },
+      username: this.state.username,
+      password: this.state.password,
+      attributes: {
+        email: this.state.email,
+        family_name: this.state.family_name
+      }
       });
       this.props.history.push("/welcome");
       console.log(signUpResponse);
@@ -140,15 +142,15 @@ class Register extends Component {
             </div>
             <div className="field">
               <p className="control">
-                <input 
-                  className="input" 
-                  type="text"
-                  id="user_type"
-                  aria-describedby="userTypeHelp"
-                  placeholder="Enter usertype"
-                  value={this.state.user_type}
-                  onChange={this.onInputChange}
-                />
+              <label>
+                Profile Type
+                <select id="family_name" value={this.state.value} onChange={this.onInputChange} 
+                  aria-describedby="userTypeHelp" placeholder="Enter usertype">
+                  <option value="default" defaultValue>Select</option>  
+                  <option value="teacher">Teacher</option>
+                  <option value="parent">Parent</option>
+                </select>
+              </label>
               </p>
             </div>
             <div className="field">
@@ -170,4 +172,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default withRouter(Register);
