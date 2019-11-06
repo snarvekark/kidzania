@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 
 import Dashboard from './components/dashboard';
-import Home from './components/home';
+import Home from './components/Home';
 import ForgotPassword from './components/auth/ForgotPassword';
 import ForgotPasswordVerification from './components/auth/ForgotPasswordVerification';
 import ChangePassword from './components/auth/ChangePassword';
