@@ -26,6 +26,11 @@ import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.GetObjectRequest;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 @Service
 public class S3BucketService {
 
@@ -39,7 +44,7 @@ public class S3BucketService {
 
 	private AmazonS3 s3;
 
-	private static final String AWS_BUCKET = "globalcustbucket";
+	private static final String AWS_BUCKET = "cloud-project-kidzania";
 
 	private static final String AWS_BUCKET_CDN = "https://cloud-project-studentapp.s3-us-west-1.amazonaws.com";
 
@@ -142,4 +147,24 @@ public class S3BucketService {
 			e.printStackTrace();
 		}
 	}
+	
+	//Read text file from S3 bucket
+	public String readFromS3(String bucketName, String username, String key) throws IOException {
+	    S3Object s3object = s3.getObject(new GetObjectRequest(
+	            bucketName, username+ "/" +key));
+	    System.out.println(s3object.getObjectMetadata().getContentType());
+	    System.out.println(s3object.getObjectMetadata().getContentLength());
+	    String text = null;
+	    
+	    BufferedReader reader = new BufferedReader(new InputStreamReader(s3object.getObjectContent()));
+	    String line;
+	    while((line = reader.readLine()) != null) {
+	      // can copy the content locally as well
+	      // using a buffered writer
+	      System.out.println(line);
+	      text= text+line;
+	    }
+	    return text;
+	  }
+
 }
