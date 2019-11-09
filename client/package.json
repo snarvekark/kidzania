@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.11.2",
+    "@fortawesome/free-regular-svg-icons": "^5.11.2",
     "aws-amplify": "^1.2.4",
     "configure": "0.0.1",
     "react": "^16.11.0",
+    "react-bootstrap": "^1.0.0-beta.14",
     "react-cognito": "^1.5.4",
     "react-dom": "^16.11.0",
     "react-redux": "^7.1.1",
