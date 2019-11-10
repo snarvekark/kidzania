@@ -84,45 +84,37 @@ class LogIn extends Component {
           <FormErrors formerrors={this.state.errors} />
 
           <form onSubmit={this.handleSubmit}>
-            <div className="field">
-              <p className="control">
-                <input 
-                  className="input" 
-                  type="text"
-                  id="username"
-                  aria-describedby="usernameHelp"
-                  placeholder="Enter username or email"
-                  value={this.state.username}
-                  onChange={this.onInputChange}
-                />
-              </p>
+            <div className="form-group col-md-3">
+              <input 
+                className="form-control" 
+                type="text"
+                id="username"
+                aria-describedby="usernameHelp"
+                placeholder="Enter username or email"
+                value={this.state.username}
+                onChange={this.onInputChange}
+              />
             </div>
-            <div className="field">
-              <p className="control has-icons-left">
-                <input 
-                  className="input" 
-                  type="password"
-                  id="password"
-                  placeholder="Password"
-                  value={this.state.password}
-                  onChange={this.onInputChange}
-                />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-lock"></i>
-                </span>
-              </p>
+            <div className="form-group col-md-3">
+              <input 
+                className="form-control" 
+                type="password"
+                id="password"
+                placeholder="Password"
+                value={this.state.password}
+                onChange={this.onInputChange}
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-lock"></i>
+              </span>
             </div>
-            <div className="field">
-              <p className="control">
-                <a href="/forgotpassword">Forgot password?</a>
-              </p>
+            <div className="form-group col-md-3">
+              <a href="/forgotpassword">Forgot password?</a>
             </div>
-            <div className="field">
-              <p className="control">
-                <button className="button is-success">
-                  Login
-                </button>
-              </p>
+            <div className="form-group col-md-3">
+              <button className="btn btn-primary">
+                Login
+              </button>
             </div>
           </form>
         </div>
