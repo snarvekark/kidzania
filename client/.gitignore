@@ -1,10 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-/client/.env
-/client/src/config.json
+/.env
+/src/config.json
 
 # dependencies
-/client/node_modules/
+/node_modules
 /.pnp
 .pnp.js
 
