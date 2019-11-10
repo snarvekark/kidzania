@@ -4,7 +4,7 @@
 /client/src/config.json
 
 # dependencies
-/client/node_modules
+/client/node_modules/
 /.pnp
 .pnp.js
 
