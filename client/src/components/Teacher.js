@@ -23,10 +23,6 @@ class Teacher extends React.Component {
     );
   }
 
-  validateConfirmationForm() {
-    return this.state.code.length > 0;
-  }
-
   handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
@@ -38,7 +34,7 @@ class Teacher extends React.Component {
     try
     {
       alert("Story Submitted");
-      this.props.history.push("/Teacher");
+      this.props.history.push("/Library");
       this.state.title = "";
       this.state.content = "";
      
