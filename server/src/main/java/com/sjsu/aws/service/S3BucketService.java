@@ -43,8 +43,9 @@ public class S3BucketService {
 	private S3Client s3Client;
 
 	private AmazonS3 s3;
-
-	private static final String AWS_BUCKET = "cloud-project-kidzania";
+	
+	@Value("${AWS_BUCKET}")
+	private String AWS_BUCKET;
 
 	private static final String AWS_BUCKET_CDN = "https://cloud-project-studentapp.s3-us-west-1.amazonaws.com";
 
