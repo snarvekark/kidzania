@@ -12,7 +12,8 @@ class Teacher extends React.Component {
     super(props);
     this.state = {
       title: "",
-      content: ""
+      content: "",
+      file: null
     };
   }
 
@@ -30,7 +31,7 @@ class Teacher extends React.Component {
   };
 
   handleSubmit = async event => {
-    event.preventDefault();
+   // event.preventDefault();
     try
     {
       alert("Story Submitted");
@@ -41,6 +42,28 @@ class Teacher extends React.Component {
     } catch (e) {
       alert(e.message);
     }
+  };
+
+  uploadStoryAPI = async event => {
+    event.preventDefault();
+    console.log("inside uploadStoryAPI function");
+    const fd = new FormData();
+    fd.append("title", this.state.title);
+    fd.append("file", this.state.file);
+    fd.append("content", this.state.content);
+    fd.append("username", "jahnavi");
+    fetch("http://localhost:8080/api/uploadStory", {
+      mode: 'no-cors',
+      method: "POST",
+      body: fd
+    }).then(res => {
+        this.handleSubmit();
+        return res;
+    });
+  };
+
+  onFileChange = event => {
+    this.state.file = event.target.files[0];
   };
 
   render() {
@@ -64,7 +87,7 @@ class Teacher extends React.Component {
             </div>
             <div className="col-sm-8" id="content">
               <h2>Create A New Story</h2>
-              <form onSubmit={this.handleSubmit}>
+              <form>
                 <div class="form-group">
                   <input class="form-control form-control-lg" 
                     type="text" placeholder="Story Title" 
@@ -78,9 +101,14 @@ class Teacher extends React.Component {
                     onChange={this.handleChange}>
                   </textarea>
                 </div>
+                <div class="form-group files">
+                  <label>Upload Your File</label>
+                  <input type="file" class="form-control" onChange={this.onFileChange}></input>
+                </div>
                 <div className="field">
                   <p className="control">
                   <button type="submit" class="btn btn-primary" isLoading={this.state.isLoading}
+                    onClick={this.uploadStoryAPI}
                     disabled={!this.validateForm()}>Add Story</button>
                   </p>
                 </div>

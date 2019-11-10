@@ -90,7 +90,7 @@ public class S3BucketService {
 		}
 	}
 
-	private File convertMultiPartToFile(MultipartFile file) throws IOException {
+	public File convertMultiPartToFile(MultipartFile file) throws IOException {
 		File convFile = new File(file.getOriginalFilename());
 		FileOutputStream fos = new FileOutputStream(convFile);
 		fos.write(file.getBytes());
