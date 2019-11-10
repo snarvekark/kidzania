@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import {Button} from 'react-bootstrap';
 import { Link, withRouter } from "react-router-dom";
+import { Auth } from "aws-amplify";
 
 class Teacher extends React.Component {
   constructor(props) {
@@ -51,7 +52,8 @@ class Teacher extends React.Component {
     fd.append("title", this.state.title);
     fd.append("file", this.state.file);
     fd.append("content", this.state.content);
-    fd.append("username", "jahnavi");
+    fd.append("username", this.props.auth.user.username);
+    console.log(this.props.auth.user.username);
     fetch("http://localhost:8080/api/uploadStory", {
       mode: 'no-cors',
       method: "POST",
@@ -102,7 +104,7 @@ class Teacher extends React.Component {
                   </textarea>
                 </div>
                 <div class="form-group files">
-                  <label>Upload Your File</label>
+                  <label>Add Image for Story</label>
                   <input type="file" class="form-control" onChange={this.onFileChange}></input>
                 </div>
                 <div className="field">

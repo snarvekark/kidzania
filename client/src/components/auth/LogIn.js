@@ -47,7 +47,7 @@ class LogIn extends Component {
       this.props.auth.setUser(user);
       Auth.currentAuthenticatedUser()
       .then(data => {
-       if(data.attributes.family_name === 'teacher')
+       if(data.attributes.profile === 'teacher')
        {
          this.props.history.push("/Teacher");
        }

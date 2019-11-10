@@ -6,11 +6,13 @@ import { Link, withRouter } from "react-router-dom";
 
 class Register extends Component {
   state = {
+    name: "",
+    family_name: "",
     username: "",
     email: "",
     password: "",
     confirmpassword: "",
-    family_name:"",
+    profile:"",
     errors: {
       cognito: null,
       blankfield: false,
@@ -41,15 +43,17 @@ class Register extends Component {
     }
 
     // AWS Cognito integration here
-    const { username, email, password, family_name } = this.state;
+    const { name, family_name, username, email, password, profile } = this.state;
     try
     {
-      const signUpResponse = await Auth.signUp({
+      const signUpResponse = await Auth.signUp({  
       username: this.state.username,
       password: this.state.password,
       attributes: {
+        name: this.state.name,
+        family_name: this.state.family_name,
         email: this.state.email,
-        family_name: this.state.family_name
+        profile: this.state.profile
       }
       });
       this.props.history.push("/welcome");
@@ -81,6 +85,32 @@ class Register extends Component {
           <FormErrors formerrors={this.state.errors} />
 
           <form onSubmit={this.handleSubmit}>
+          <div className="field">
+              <p className="control">
+                <input 
+                  className="input" 
+                  type="text"
+                  id="name"
+                  aria-describedby="nameHelp"
+                  placeholder="Enter First Name"
+                  value={this.state.name}
+                  onChange={this.onInputChange}
+                />
+              </p>
+            </div>
+            <div className="field">
+              <p className="control">
+                <input 
+                  className="input" 
+                  type="text"
+                  id="family_name"
+                  aria-describedby="familyNameHelp"
+                  placeholder="Enter Last Name"
+                  value={this.state.family_name}
+                  onChange={this.onInputChange}
+                />
+              </p>
+            </div>
             <div className="field">
               <p className="control">
                 <input 
@@ -144,7 +174,7 @@ class Register extends Component {
               <p className="control">
               <label>
                 Profile Type
-                <select id="family_name" value={this.state.value} onChange={this.onInputChange} 
+                <select id="profile" value={this.state.value} onChange={this.onInputChange} 
                   aria-describedby="userTypeHelp" placeholder="Enter usertype">
                   <option value="default" defaultValue>Select</option>  
                   <option value="teacher">Teacher</option>
