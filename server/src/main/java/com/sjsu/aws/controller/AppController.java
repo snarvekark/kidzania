@@ -27,7 +27,6 @@ public class AppController {
 			@RequestPart(value = "content") String content,
 			@RequestPart(value = "title") String title,
 			@RequestPart(value = "username") String username ) throws Exception { 
-		System.out.println(content);
 		s3BucketService.uploadFileWithTitle(AppService.generateAudioFile(content, OutputFormat.Mp3), title,".mp3", username);
 		s3BucketService.uploadFileWithTitle(AppService.generateTextFile(content), title ,".txt", username);
 		if(file != null) {

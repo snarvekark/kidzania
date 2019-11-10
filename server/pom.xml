@@ -119,7 +119,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>libs/</classpathPrefix>
-							<mainClass>com.sjsu.aws.application.StudentAdmissionAppClient</mainClass>
+							<mainClass>com.sjsu.aws.application.Application</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

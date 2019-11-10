@@ -6,11 +6,11 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan({ "com.sjsu.aws.*" })
-public class StudentAdmissionAppClient
+public class Application
 {
     public static void main(String[] args)
     {
-        System.out.println( "Hello World!" );
-        SpringApplication.run(StudentAdmissionAppClient.class, args);
+        System.out.println( "Inside Application class - Cloud Project" );
+        SpringApplication.run(Application.class, args);
     }
 }
