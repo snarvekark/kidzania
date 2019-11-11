@@ -24,3 +24,5 @@ CREATE TABLE `kidzania`.`TeacherInfo` (
 
 insert into kidzania.UserInfo(UserName,Profile,CreatedDate)
 values ('JuhiNayak','Teacher',CURDATE())
+
+--jenkins test--
