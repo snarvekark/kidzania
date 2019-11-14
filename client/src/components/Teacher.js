@@ -79,7 +79,7 @@ class Teacher extends React.Component {
                   <a className="nav-link active" href="#" onclick={this.StoryOptions}>Story Book</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Picture Story</a>
+                  <a className="nav-link" href="/PictureStory">Picture Story</a>
                 </li>
               </ul>
               <hr className="d-sm-none" />
