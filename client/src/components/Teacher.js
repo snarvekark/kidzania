@@ -81,10 +81,7 @@ class Teacher extends React.Component {
                 <li className="nav-item">
                   <a className="nav-link" href="#">Picture Story</a>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">HomeWork</a>
-                </li>
-             </ul>
+              </ul>
               <hr className="d-sm-none" />
             </div>
             <div className="col-sm-8" id="content">
