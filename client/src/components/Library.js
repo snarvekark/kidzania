@@ -12,21 +12,30 @@ class Library extends React.Component {
     super(props);
     this.state = {
       story: "",
-      class: ""
+      classroom: ""
     };
   }
-
+  
   validateForm() {
     return (
-      this.state.title.length > 0 &&
-      this.state.content.length > 0
+      this.state.story.length > 0 &&
+      this.state.classroom.length > 0
     );
   }
+
+  onInputChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+    document.getElementById(event.target.id).classList.remove("is-danger");
+  }
+
 
   handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
     });
+    console.log(this.state.value);
   };
 
   handleSubmit = async event => {
@@ -62,33 +71,29 @@ class Library extends React.Component {
             <div className="col-sm-8" id="content">
               <h2>Assign Story to Class</h2>
               <form onSubmit={this.handleSubmit}>
-              <div className="field">
-                <p className="control">
-                    <label>
-                        Select Story
-                        <select id="story" value={this.state.value} onChange={this.onInputChange} 
-                        aria-describedby="StoryHelp" placeholder="Select Story">
-                            <option value="default" defaultValue>Select</option>  
-                            <option value="Story1">Story 1</option>
-                            <option value="Story2">Story 2</option>
-                            <option value="Story3">Story 3</option>
-                        </select>
-                    </label>
-                </p>
+              <div className="form-group">
+                <label class="form-label">
+                    Select Story
+                    <select id="story" value={this.state.value} onChange={this.onInputChange} 
+                    aria-describedby="StoryHelp" placeholder="Select Story" class="form-control">
+                        <option value="default" defaultValue>Select</option>  
+                        <option value="Story1">Story 1</option>
+                        <option value="Story2">Story 2</option>
+                        <option value="Story3">Story 3</option>
+                    </select>
+                </label>
               </div>
-              <div className="field">
-                <p className="control">
-                    <label>
-                        Select Class
-                        <select id="classroom" value={this.state.value} onChange={this.onInputChange} 
-                        aria-describedby="ClassHelp" placeholder="Select Class">
-                            <option value="default" defaultValue>Select</option>  
-                            <option value="Class1">Class 1</option>
-                            <option value="Class2">Class 2</option>
-                            <option value="Class3">Class 3</option>
-                        </select>
-                    </label>
-                </p>
+              <div className="form-group">
+                <label class="form-label">
+                    Select Class
+                    <select id="classroom" value={this.state.value} onChange={this.onInputChange} 
+                    aria-describedby="ClassHelp" placeholder="Select Class" class="form-control">
+                        <option value="default" defaultValue>Select</option>  
+                        <option value="Class1">Class 1</option>
+                        <option value="Class2">Class 2</option>
+                        <option value="Class3">Class 3</option>
+                    </select>
+                </label>
               </div>
                 <div className="field">
                   <p className="control">
