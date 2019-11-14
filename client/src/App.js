@@ -20,6 +20,7 @@ import Teacher from './components/Teacher';
 import Parent from './components/Parent';
 import PictureAssignment from './components/PictureAssignment';
 import StoryAssignment from './components/StoryAssignment';
+import Library from './components/Library';
 import { Auth } from "aws-amplify";
 
 class App extends React.Component
@@ -80,6 +81,7 @@ state = {
                 <Route exact path="/Parent" render={(props) => <Parent {...props} auth={authProps} />} />
                 <Route exact path="/PictureAssignment" render={(props) => <PictureAssignment {...props} auth={authProps} />} />
                 <Route exact path="/StoryAssignment" render={(props) => <StoryAssignment {...props} auth={authProps} />} />
+                <Route exact path="/Library" render={(props) => <Library {...props} auth={authProps} />} />
 
                 
 	            </Switch>
