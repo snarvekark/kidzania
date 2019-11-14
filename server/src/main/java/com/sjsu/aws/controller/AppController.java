@@ -8,15 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.amazonaws.services.polly.model.OutputFormat;
 import com.sjsu.aws.service.AppService;
 import com.sjsu.aws.service.S3BucketService;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping(value = "/api")
+@CrossOrigin(origins = "*")
+
 public class AppController {
 	
 	@Autowired
