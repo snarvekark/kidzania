@@ -6,7 +6,7 @@ import {
   Switch,
   Link
 } from 'react-router-dom';
-
+import './App.css';
 import Dashboard from './components/dashboard';
 import Home from './components/Home';
 import ForgotPassword from './components/auth/ForgotPassword';
@@ -18,6 +18,8 @@ import LogIn from './components/auth/LogIn';
 import Register from './components/auth/Register';
 import Teacher from './components/Teacher';
 import Parent from './components/Parent';
+import PictureAssignment from './components/PictureAssignment';
+import StoryAssignment from './components/StoryAssignment';
 import { Auth } from "aws-amplify";
 
 class App extends React.Component
@@ -76,6 +78,9 @@ state = {
 	              <Route exact path="/welcome" render={(props) => <Welcome {...props} auth={authProps} />} />
                 <Route exact path="/Teacher" render={(props) => <Teacher {...props} auth={authProps} />} />
                 <Route exact path="/Parent" render={(props) => <Parent {...props} auth={authProps} />} />
+                <Route exact path="/PictureAssignment" render={(props) => <PictureAssignment {...props} auth={authProps} />} />
+                <Route exact path="/StoryAssignment" render={(props) => <StoryAssignment {...props} auth={authProps} />} />
+
                 
 	            </Switch>
 	          </div>
