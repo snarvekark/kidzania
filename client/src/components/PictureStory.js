@@ -32,55 +32,51 @@ export default class PictureStory extends Component {
   render() {
     return (
       <div class="container">
-        <div className="row">
-          <div className="col-sm-4">
-            <label>Upload Pictures for kids to guess objects!</label>
+        <h3>Picture Assignment</h3>
+        <form> 
+          <div class="form-group col-md-5">
+            <label>Select a Picture</label>
             <input
               type="file"
               class="form-control"
               onChange={this.onFileChange}
-            ></input>
+              placeholder="Select a Picture">
+            </input>
             <button
               type="submit"
               class="btn btn-primary"
-              onClick={this.uploadImageAPI}
-            >
-              Upload Pictures
+              onClick={this.uploadImageAPI}>
+              Detect Objects
             </button>
           </div>
-          <div className="col-sm-2">
-            <label>Objects Detected are:</label>
-            <div className="col-sm-1">
-              <button type="submit" class="btn btn-primary">
-                {this.state.rekognitionRes[0]}
-              </button>{" "}
-            </div>
-            <div className="col-sm-1">
-              <button type="submit" class="btn btn-primary">
-              {this.state.rekognitionRes[1]}
-              </button>
-            </div>
+          <div className="form-group col-md-5">
+            <label>Following Objects were detected</label>
+            <select data-placeholder="Type a letter to search" multiple 
+              name="objects_detected" id="objects_detected" className="form-control">
+              <option value=""></option>
+              <option>{this.state.rekognitionRes[0]}</option>
+              <option>{this.state.rekognitionRes[1]}</option>
+              <option>{this.state.rekognitionRes[2]}</option>
+              <option>{this.state.rekognitionRes[3]}</option>
+            </select>
           </div>
-          <div className="col-sm-6">
+          <div className="form-group col-md-5">
             <label>
-              Please insert random object to give as option to kids:
+              Additional lables for selection
             </label>
-            <div className="col-sm-4">
-              <input type="text" placeholder="Insert Random Object"></input>
+            <div>
+              <input type="text" placeholder="Add Labels" className="form-control"></input>
             </div>
-            <div className="col-sm-4">
-              <input type="text" placeholder="Insert Random Object"></input>
+            <div>
+              <input type="text" placeholder="Add Labels" className="form-control"></input>
             </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-4 fakeimg">Image</div>
-          <div className="col-sm-3 text-right">
+          <div className="form-group col-md-5">
             <button type="submit" class="btn btn-primary">
               Submit Objects
             </button>
           </div>
-        </div>
+        </form>
       </div>
     );
   }
