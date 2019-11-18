@@ -103,7 +103,7 @@ public class S3BucketService {
 		return multiPart.getOriginalFilename();
 	}
 
-	private void uploadFileTos3bucket(String fileName, File file, String username) {
+	public void uploadFileTos3bucket(String fileName, File file, String username) {
 		PutObjectResult putObject = s3.putObject(AWS_BUCKET, username + "/" + fileName, file);
 		System.out.println("uploadFileTos3bucket");
 		System.out.println(putObject.getETag());
