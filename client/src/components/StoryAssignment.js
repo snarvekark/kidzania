@@ -36,7 +36,8 @@ export default class StoryAssignment extends Component {
 
   render(){
   return (
-    <section className="section auth">
+    < div className = "App-header">
+    <section className="section auth ">
       <h3><label>Story Title: </label></h3>
       <div className="row">
         <div className="col-sm-7">
@@ -53,6 +54,11 @@ export default class StoryAssignment extends Component {
       </div>
       </div>
     </section>
+    <div className="jumbotron text-center" style={{marginBottom: 0}}>
+          <p>Copyright. KidZania 2019</p>
+        </div>
+    </div>
+    
   )
 }
 }

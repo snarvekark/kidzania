@@ -30,6 +30,9 @@ export default class PictureAssignment extends Component {
                   <button  type="submit" class="btn btn-primary" >Object4</button>
             </div>
           </div>
+          <div className="jumbotron text-center" style={{marginBottom: 0}}>
+          <p>Copyright. KidZania 2019</p>
+        </div>
             </div>
 
     )
