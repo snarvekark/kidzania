@@ -5,6 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import Amplify from "aws-amplify";
 import config from "./config";
 import { Logger } from 'aws-amplify';
+import "semantic-ui-css/semantic.min.css";
 
 Amplify.configure({
   Auth: {
