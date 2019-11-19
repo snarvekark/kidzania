@@ -2,6 +2,7 @@ package com.sjsu.aws.LambdaHandler;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
 
@@ -22,7 +23,7 @@ public class UserInfoLambdaHandler implements RequestHandler<UserInfoAPIRequest,
 		
 		UserInfo userinfo = null;
 		
-		//LambdaLogger logger = context.getLogger();
+		LambdaLogger logger = context.getLogger();
 		
 		connection = DatabaseConnection.getDBConnection();
 		
@@ -33,11 +34,18 @@ public class UserInfoLambdaHandler implements RequestHandler<UserInfoAPIRequest,
 				if (postUserInfo(input.getUser())) {
 					
 					userinfo = input.getUser();
-					//logger.log("POST Completed");
+					logger.log("POST Completed");
 					break;
 				}
 			
-			case "GET":{}	
+			case "GET":
+				
+				logger.log("Inside GET");	
+				logger.log("user " + input);	
+				logger.log("before call " + input.getUsername());
+				userinfo = getUserInfo(input.getUsername());
+				logger.log("GET Completed");
+				break;
 		}
 		return userinfo;
 	}
@@ -70,5 +78,33 @@ public class UserInfoLambdaHandler implements RequestHandler<UserInfoAPIRequest,
 		
 		
 		return result;
+	}
+	
+	private UserInfo getUserInfo(String username) {
+		System.out.println("username "+username);
+		UserInfo userinfo = null;
+		
+		try {
+			PreparedStatement prepareStatement = connection
+					.prepareStatement("select * from `UserInfo` where UserName = ?");
+			prepareStatement.setString(1, username);
+			ResultSet rs = prepareStatement.executeQuery();
+			
+			if (rs.next()) {
+				
+				userinfo = new UserInfo();
+				userinfo.setUsername(rs.getString("UserName"));
+				userinfo.setProfile(rs.getString("Profile"));
+				userinfo.setCreatedDate(rs.getDate("CreatedDate"));
+			}
+			else {
+				System.out.println("rs is null");
+			}
+
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return userinfo;
 	}
 }
