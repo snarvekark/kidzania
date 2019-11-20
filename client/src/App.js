@@ -67,7 +67,7 @@ state = {
 	      !this.state.isAuthenticating &&
 			<div className="App">
 	        <Router>
-	          <div>
+	          <div className="bg">
 	            <Dashboard auth={authProps}/>
 	            <Switch>
 	              <Route exact path="/" render={(props) => <Home {...props} auth={authProps} />} />
