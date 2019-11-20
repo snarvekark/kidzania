@@ -65,7 +65,9 @@ class Teacher extends React.Component {
   };
 
   onFileChange = event => {
-    this.state.file = event.target.files[0];
+    this.setState({
+      file: URL.createObjectURL(event.target.files[0])
+    })
   };
 
   render() {
@@ -110,6 +112,9 @@ class Teacher extends React.Component {
                     onClick={this.uploadStoryAPI}
                     disabled={!this.validateForm()}>Add Story</button>
                   </p>
+                </div>
+                <div>
+                  <img src={this.state.file}/>
                 </div>
               </form>
             </div>
