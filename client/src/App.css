@@ -38,3 +38,22 @@
 .jumbotron{
   color: black;
 }
+
+
+
+.shadow{
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+  font-family: fantasy;
+  font-size: 47px;
+  color: darkslateblue;
+}
+.shadow1{
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+  font-family: fantasy;
+  font-size: 25px;
+  color: darkslateblue;
+}
+
+.home{
+  background-color: seashell;
+}
