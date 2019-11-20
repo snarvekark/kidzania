@@ -11,6 +11,7 @@ class Home extends React.Component {
     return(
       <div>
         <div className="home">
+        <img src= {process.env.PUBLIC_URL + "/kidzania.png"} width = "1300px" ></img>
           <div className="row">
             <div className="col-sm-5">
             <p className="shadow">

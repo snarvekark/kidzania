@@ -25,7 +25,6 @@ class Dashboard extends React.Component {
   render() {
     return(
       <div>
-          <img src= {process.env.PUBLIC_URL + "/kidzania.png"} width = "1300px" ></img>
         <div>
           <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
             <a className="navbar-brand" href="#">Navbar</a>
