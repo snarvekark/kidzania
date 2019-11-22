@@ -30,9 +30,11 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
-        <div className="jumbotron text-center" style={{marginBottom: 0}}>
-          <p>Copyright. KidZania 2019</p>
-        </div>
+        <footer class="page-footer font-small blue fixed-bottom">
+          <div class="footer-copyright text-center py-3">© 2019 Copyright
+            <a href="http//localhost:3000"> Kidzania</a>
+          </div>
+        </footer>
       </div>)
    }
 }
