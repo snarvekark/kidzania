@@ -26,7 +26,7 @@ class Dashboard extends React.Component {
     return(
       <div>
         <div>
-          <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+          <nav className="navbar navbar-expand-sm blue navbar-blue">
             <a className="navbar-brand" href="#">Navbar</a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
               <span className="navbar-toggler-icon" />
