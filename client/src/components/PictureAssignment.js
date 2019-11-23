@@ -21,6 +21,7 @@ export default class PictureAssignment extends Component {
             </div>
             </div>
             <div className="col-sm-1">
+                  <label>Object 1</label>
                   <button  type="submit" class="btn btn-primary" >Object1</button> </div>
            <div className="col-sm-1">
                   <button type="submit" class="btn btn-primary" >Object2</button> </div>
@@ -30,10 +31,7 @@ export default class PictureAssignment extends Component {
                   <button  type="submit" class="btn btn-primary" >Object4</button>
             </div>
           </div>
-          <div className="jumbotron text-center" style={{marginBottom: 0}}>
-          <p>Copyright. KidZania 2019</p>
         </div>
-            </div>
 
     )
   }

@@ -53,12 +53,9 @@ export default class StoryAssignment extends Component {
       <button class="btn btn-primary play" onClick={this.pause}><Icon name ="pause"></Icon></button>
       </div>
       </div>
+     
     </section>
-    <div className="jumbotron text-center" style={{marginBottom: 0}}>
-          <p>Copyright. KidZania 2019</p>
-        </div>
     </div>
-    
   )
 }
 }

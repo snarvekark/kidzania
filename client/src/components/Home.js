@@ -11,7 +11,7 @@ class Home extends React.Component {
     return(
       <div>
         <div className="home">
-        <img src= {process.env.PUBLIC_URL + "/kidzania.png"} width = "1300px" ></img>
+        <img src= {process.env.PUBLIC_URL + "/kidzania.png"} width = "100%" ></img>
           <div className="row">
             <div className="col-sm-5">
             <p className="shadow">
@@ -30,11 +30,6 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
-        <footer class="page-footer font-small blue fixed-bottom">
-          <div class="footer-copyright text-center py-3">© 2019 Copyright
-            <a href="http//localhost:3000"> Kidzania</a>
-          </div>
-        </footer>
       </div>)
    }
 }

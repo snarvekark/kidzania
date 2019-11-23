@@ -73,9 +73,6 @@ class Parent extends React.Component {
             </div>
           </div>
         </div>
-        <div className="jumbotron text-center" style={{marginBottom: 0}}>
-          <p>Copyright. KidZania 2019</p>
-        </div>
       </div>)
    }
 }
