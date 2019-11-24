@@ -15,7 +15,7 @@ class Home extends React.Component {
           <div className="row">
             <div className="col-sm-5">
             <p className="shadow">
-            Welcome to an interactive fun and learning application for kids!! 
+            Welcome to an interactive, fun and learning application for kids!! 
             </p>
             </div>
             <div className="col-sm-7">

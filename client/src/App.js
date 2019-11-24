@@ -71,6 +71,7 @@ state = {
 	            <Dashboard auth={authProps}/>
 	            <Switch>
 	              <Route exact path="/" render={(props) => <Home {...props} auth={authProps} />} />
+                <Route exact path="/Home" render={(props) => <Home {...props} auth={authProps} />} />
 	              <Route exact path="/login" render={(props) => <LogIn {...props} auth={authProps} />} />
 	              <Route exact path="/register" render={(props) => <Register {...props} auth={authProps} />} />
 	              <Route exact path="/forgotpassword" render={(props) => <ForgotPassword {...props} auth={authProps} />} />} />

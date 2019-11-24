@@ -113,9 +113,6 @@ class Teacher extends React.Component {
                     disabled={!this.validateForm()}>Add Story</button>
                   </p>
                 </div>
-                <div>
-                  <img src={this.state.file}/>
-                </div>
               </form>
             </div>
           </div>

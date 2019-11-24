@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import { Link, withRouter } from "react-router-dom";
 import { Auth } from "aws-amplify";
+import { jsxAttribute } from '@babel/types';
 
 class Dashboard extends React.Component {
 
@@ -27,12 +28,11 @@ class Dashboard extends React.Component {
       <div>
         <div>
           <nav className="navbar navbar-expand-sm blue navbar-blue">
-            <a className="navbar-brand" href="#">Navbar</a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
               <span className="navbar-toggler-icon" />
             </button>
             <div className="collapse navbar-collapse" id="collapsibleNavbar">
-                <Link to="/Home" className="btn btn-primary">Home</Link>
+                <Link to="/Home" className="btn aqua-gradient">Home</Link>
             </div>
             <div className="navbar-end">
               <div className="navbar-link">
@@ -43,12 +43,16 @@ class Dashboard extends React.Component {
                   </p>
                   </React.Fragment>
                 )}
-                <div className="button button-primary">
+                <div className="row">
                   {!this.props.auth.isAuthenticated && (
-                    <div className="button button-primary">
-                      <Link to="/Register" className="btn btn-primary">Register</Link>
-                      <Link to="/Login" className="btn btn-primary">Login</Link>
+                    <React.Fragment>
+                    <div>
+                      <Link to="/Register" className="btn aqua-gradient">Register</Link>
                     </div>
+                    <div>
+                      <Link to="/Login" className="btn aqua-gradient">Login</Link>
+                    </div>
+                    </React.Fragment>
                   )}
                   {this.props.auth.isAuthenticated && (
                      <Link to="/Home" onClick={this.handleLogOut} className="btn btn-primary">

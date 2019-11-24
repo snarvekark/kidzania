@@ -26,7 +26,9 @@ export default class PictureStory extends Component {
   };
 
   onFileChange = event => {
-    this.state.file = event.target.files[0];
+    this.setState({
+      file: URL.createObjectURL(event.target.files[0])
+    })
   };
 
   render() {
@@ -49,11 +51,13 @@ export default class PictureStory extends Component {
               Detect Objects
             </button>
           </div>
+          <div className="float-right">
+              <img src={this.state.file}/>
+            </div>
           <div className="form-group col-md-5">
             <label>Following Objects were detected</label>
             <select data-placeholder="Type a letter to search" multiple 
               name="objects_detected" id="objects_detected" className="form-control">
-              <option value=""></option>
               <option>{this.state.rekognitionRes[0]}</option>
               <option>{this.state.rekognitionRes[1]}</option>
               <option>{this.state.rekognitionRes[2]}</option>
