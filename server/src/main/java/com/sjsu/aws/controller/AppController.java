@@ -43,9 +43,9 @@ public class AppController {
 	}
 	
 	@GetMapping("/displayobject")
-	public void displayObject(@RequestParam(value = "bucketname") String bucketname, @RequestParam(value = "username") String username,
+	public String displayObject(@RequestParam(value = "bucketname") String bucketname, @RequestParam(value = "username") String username,
 			@RequestParam(value = "key") String key) throws Exception {
-		this.s3BucketService.readFromS3(bucketname,username, key);
+		return this.s3BucketService.readFromS3(bucketname,username, key);
 	}
 	
 		

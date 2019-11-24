@@ -105,6 +105,7 @@ public class TeacherInfoLambdaHandler implements RequestHandler<TeacherInfoAPIRe
 				teacherinfo.setStoryTextFile(rs.getString("StoryTextFile"));
 				teacherinfo.setCloudFrontTextFile(rs.getString("cloudFrontTextFile"));
 				teacherinfo.setStoryPicture(rs.getString("StoryPicture"));
+				teacherinfo.setStoryMp3(rs.getString("Storymp3"));
 				teacherinfo.setCloudFrontmp3(rs.getString("Storymp3"));
 				teacherinfo.setCloudFrontTextFile(rs.getString("CloudFrontmp3"));
 				teacherinfo.setCreatedDate(rs.getDate("CreatedDate"));

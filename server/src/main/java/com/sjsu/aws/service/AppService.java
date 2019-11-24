@@ -52,11 +52,11 @@ public class AppService {
 	public void initialize() {
 		polly = AmazonPollyClientBuilder.standard()
 				.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(key, secretKey)))
-				.withRegion("us-east-2").build();
+				.withRegion("us-west-1").build();
 
 		rekognitionClient = AmazonRekognitionClientBuilder.standard()
 				.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(key, secretKey)))
-				.withRegion("us-east-2").build();
+				.withRegion("us-west-1").build();
 	}
 
 	/**

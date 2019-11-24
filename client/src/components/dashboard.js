@@ -28,6 +28,10 @@ class Dashboard extends React.Component {
       <div>
         <div>
           <nav className="navbar navbar-expand-sm blue navbar-blue">
+<<<<<<< HEAD
+=======
+            
+>>>>>>> 1e7803c55d566286f8a05a016e110b6eae18b647
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
               <span className="navbar-toggler-icon" />
             </button>
