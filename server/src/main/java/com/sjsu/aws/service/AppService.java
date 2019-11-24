@@ -68,7 +68,7 @@ public class AppService {
 	 * @throws IOException
 	 */
 	public static File generateAudioFile(String text, OutputFormat format) throws IOException {
-		String outputFileName = "/Users/geethu/git/kidzania/server/temp.mp3";
+		String outputFileName = "/temp.mp3";
 		DescribeVoicesRequest describeVoicesRequest = new DescribeVoicesRequest();
 		DescribeVoicesResult describeVoicesResult = polly.describeVoices(describeVoicesRequest);
 		voice = describeVoicesResult.getVoices().stream().filter(p -> p.getName().equals("Salli")).findFirst().get();
@@ -104,7 +104,7 @@ public class AppService {
 	 * @throws IOException
 	 */
 	public static File generateTextFile(String text) throws IOException {
-		String outputFileName = "/Users/geethu/git/kidzania/server/temp.txt";
+		String outputFileName = "/temp.txt";
 		File file = new File(outputFileName);
 		try {
 			FileWriter fileWriter = new FileWriter(file);
