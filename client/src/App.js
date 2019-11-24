@@ -70,6 +70,7 @@ state = {
 	          <div className="bg">
 	            <Dashboard auth={authProps}/>
 	            <Switch>
+              <Route exact path="/Home" render={(props) => <Home {...props} auth={authProps} />} />
 	              <Route exact path="/" render={(props) => <Home {...props} auth={authProps} />} />
 	              <Route exact path="/login" render={(props) => <LogIn {...props} auth={authProps} />} />
 	              <Route exact path="/register" render={(props) => <Register {...props} auth={authProps} />} />
