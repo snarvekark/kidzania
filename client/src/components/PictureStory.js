@@ -5,7 +5,8 @@ export default class PictureStory extends Component {
     super(props);
     this.state = {
       file: null,
-      rekognitionRes : []
+      rekognitionRes : [],
+      fileUrl : ""
     };
   }
   
@@ -27,7 +28,8 @@ export default class PictureStory extends Component {
 
   onFileChange = event => {
     this.setState({
-      file: URL.createObjectURL(event.target.files[0])
+      file: event.target.files[0],
+      fileUrl : URL.createObjectURL(event.target.files[0])
     })
   };
 
@@ -52,7 +54,7 @@ export default class PictureStory extends Component {
             </button>
           </div>
           <div className="float-right">
-              <img src={this.state.file}/>
+              <img src={this.state.fileUrl}/>
             </div>
           <div className="form-group col-md-5">
             <label>Following Objects were detected</label>
