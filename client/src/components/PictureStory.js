@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react';
 import {
   BrowserRouter as Router,
@@ -9,10 +8,8 @@ import {Button} from 'react-bootstrap';
 import { Link, withRouter } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import TeacherNav from './TeacherNav';
-=======
 import React, { Component } from "react";
 import config from "../config";
->>>>>>> c3ecaebe68509006289278031c7fd66aa8a7861f
 
 class PictureStory extends React.Component {
   constructor(props) {
@@ -49,7 +46,6 @@ class PictureStory extends React.Component {
 
   render() {
     return (
-<<<<<<< HEAD
       <div>
         <div className="container" style={{marginTop: '30px'}}>
           <div className="row">
@@ -103,45 +99,6 @@ class PictureStory extends React.Component {
                   </div>
                 </form>
               </div>
-=======
-      <div class="container">
-        <h3>Picture Assignment</h3>
-        <form> 
-          <div class="form-group col-md-5">
-            <label>Select a Picture</label>
-            <input
-              type="file"
-              class="form-control"
-              onChange={this.onFileChange}
-              placeholder="Select a Picture">
-            </input>
-            <button
-              type="submit"
-              class="btn btn-primary"
-              onClick={this.uploadImageAPI}>
-              Detect Objects
-            </button>
-          </div>
-          <div className="float-right">
-              <img src={this.state.fileUrl}/>
-            </div>
-          <div className="form-group col-md-5">
-            <label>Following Objects were detected</label>
-            <select data-placeholder="Type a letter to search" multiple 
-              name="objects_detected" id="objects_detected" className="form-control">
-              <option>{this.state.rekognitionRes[0]}</option>
-              <option>{this.state.rekognitionRes[1]}</option>
-              <option>{this.state.rekognitionRes[2]}</option>
-              <option>{this.state.rekognitionRes[3]}</option>
-            </select>
-          </div>
-          <div className="form-group col-md-5">
-            <label>
-              Additional lables for selection
-            </label>
-            <div>
-              <input type="text" placeholder="Add Labels" className="form-control"></input>
->>>>>>> c3ecaebe68509006289278031c7fd66aa8a7861f
             </div>
           </div>
         </div>
