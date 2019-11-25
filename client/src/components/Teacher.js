@@ -66,7 +66,7 @@ class Teacher extends React.Component {
 
   onFileChange = event => {
     this.setState({
-      file: URL.createObjectURL(event.target.files[0])
+      file: event.target.files[0]
     })
   };
 
