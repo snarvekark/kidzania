@@ -82,16 +82,8 @@ class Teacher extends React.Component {
       <div>
         <div className="container" style={{marginTop: '30px'}}>
           <div className="row">
+          <div className="col-sm-4">
             <TeacherNav />
-            <div className="col-sm-4">
-              <ul className="nav nav-pills flex-column">
-                <li className="nav-item">
-                  <a className="nav-link active" href="#" onClick={this.navigateStoryOptions}>Story Book</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#" onClick={this.navigatePictureStory}>Picture Story</a>
-                </li>
-              </ul>
               <hr className="d-sm-none" />
             </div>
             <div className="col-sm-8" id="content">

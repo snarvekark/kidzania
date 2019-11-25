@@ -1,4 +1,4 @@
-import React from 'react';
+
 import {
   BrowserRouter as Router,
   Route,
@@ -69,7 +69,7 @@ class PictureStory extends React.Component {
                     </button>
                   </div>
                   <div className="float-right">
-                      <img src={this.state.file}/>
+                      <img src={this.state.fileUrl}/>
                     </div>
                   <div className="form-group col-md-5">
                     <label>Following Objects were detected</label>
