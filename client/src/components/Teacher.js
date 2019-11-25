@@ -1,4 +1,5 @@
 import React from 'react';
+import config from "../config";
 import {
   BrowserRouter as Router,
   Route,
@@ -55,7 +56,7 @@ class Teacher extends React.Component {
     fd.append("content", this.state.content);
     fd.append("username", this.props.auth.user.username);
     console.log(this.props.auth.user.username);
-    fetch("http://localhost:8080/api/uploadStory", {
+    fetch(config.serverUrl+"/api/uploadStory", {
       mode: 'no-cors',
       method: "POST",
       body: fd
@@ -67,16 +68,35 @@ class Teacher extends React.Component {
 
   onFileChange = event => {
     this.setState({
-      file: URL.createObjectURL(event.target.files[0])
+      file: event.target.files[0]
     })
   };
+
+  navigatePictureStory = () =>{
+    console.log("navigation to picture story page")
+    this.props.history.push("/PictureStory");
+  }
 
   render() {
     return(
       <div>
         <div className="container" style={{marginTop: '30px'}}>
           <div className="row">
+<<<<<<< HEAD
             <TeacherNav />
+=======
+            <div className="col-sm-4">
+              <ul className="nav nav-pills flex-column">
+                <li className="nav-item">
+                  <a className="nav-link active" href="#" onClick={this.StoryOptions}>Story Book</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#" onClick={this.navigatePictureStory}>Picture Story</a>
+                </li>
+              </ul>
+              <hr className="d-sm-none" />
+            </div>
+>>>>>>> c3ecaebe68509006289278031c7fd66aa8a7861f
             <div className="col-sm-8" id="content">
               <h2>Create A New Story</h2>
               <form>

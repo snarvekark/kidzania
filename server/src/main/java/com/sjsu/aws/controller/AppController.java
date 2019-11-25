@@ -22,38 +22,38 @@ import com.sjsu.aws.service.S3BucketService;
 @CrossOrigin(origins = "*")
 
 public class AppController {
-	
+
 	@Autowired
 	S3BucketService s3BucketService;
-	
+
 	@Autowired
 	AppService appService;
-	
+
 	@PostMapping("/uploadStory")
-	public void updateObject(@RequestPart(value = "file",required = false) MultipartFile file,
-			@RequestPart(value = "content") String content,
-			@RequestPart(value = "title") String title,
-			@RequestPart(value = "username") String username ) throws Exception { 
-		s3BucketService.uploadFileWithTitle(AppService.generateAudioFile(content, OutputFormat.Mp3), title,".mp3", username);
-		s3BucketService.uploadFileWithTitle(AppService.generateTextFile(content), title ,".txt", username);
-		if(file != null) {
+	public void updateObject(@RequestPart(value = "file", required = false) MultipartFile file,
+			@RequestPart(value = "content") String content, @RequestPart(value = "title") String title,
+			@RequestPart(value = "username") String username) throws Exception {
+		s3BucketService.uploadFileWithTitle(appService.generateAudioFile(content, OutputFormat.Mp3), title, ".mp3",
+				username);
+		s3BucketService.uploadFileWithTitle(appService.generateTextFile(content), title, ".txt", username);
+		if (file != null) {
 			File imageFile = s3BucketService.convertMultiPartToFile(file);
-			s3BucketService.uploadFileWithTitle(imageFile, title ,".jpg", username);
+			s3BucketService.uploadFileWithTitle(imageFile, title, ".jpg", username);
 		}
 	}
-	
+
 	@GetMapping("/displayobject")
-	public String displayObject(@RequestParam(value = "bucketname") String bucketname, @RequestParam(value = "username") String username,
-			@RequestParam(value = "key") String key) throws Exception {
-		return this.s3BucketService.readFromS3(bucketname,username, key);
+	public String displayObject(@RequestParam(value = "bucketname") String bucketname,
+			@RequestParam(value = "username") String username, @RequestParam(value = "key") String key)
+			throws Exception {
+		return this.s3BucketService.readFromS3(bucketname, username, key);
 	}
-	
-		
+
 	@PostMapping("/uploadImage")
-	public List<String> uploadImageForRecognition(@RequestPart(value = "file",required = false) MultipartFile file
-				) throws Exception { 
-			File imageFile = s3BucketService.convertMultiPartToFile(file);
-			s3BucketService.uploadFileTos3bucket(file.getOriginalFilename(), imageFile, "Pictures");			
-			return appService.detectLabelsInFile(imageFile);			
+	public List<String> uploadImageForRecognition(@RequestPart(value = "file", required = false) MultipartFile file)
+			throws Exception {
+		File imageFile = s3BucketService.convertMultiPartToFile(file);
+		s3BucketService.uploadFileTos3bucket(file.getOriginalFilename(), imageFile, "Pictures");
+		return appService.detectLabelsInFile(imageFile);
 	}
 }

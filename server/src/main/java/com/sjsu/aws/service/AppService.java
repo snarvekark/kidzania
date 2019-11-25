@@ -43,6 +43,9 @@ public class AppService {
 
 	@Value("${cloud.aws.credentials.secretKey}")
 	private String secretKey;
+	
+	@Value("${TEMPFILE_LOCATION}")
+	private String filePath;
 
 	private static AmazonPolly polly;
 	private static Voice voice;
@@ -67,8 +70,8 @@ public class AppService {
 	 * @return
 	 * @throws IOException
 	 */
-	public static File generateAudioFile(String text, OutputFormat format) throws IOException {
-		String outputFileName = "/temp.mp3";
+	public File generateAudioFile(String text, OutputFormat format) throws IOException {
+		String outputFileName = filePath+"/temp.mp3";
 		DescribeVoicesRequest describeVoicesRequest = new DescribeVoicesRequest();
 		DescribeVoicesResult describeVoicesResult = polly.describeVoices(describeVoicesRequest);
 		voice = describeVoicesResult.getVoices().stream().filter(p -> p.getName().equals("Salli")).findFirst().get();
@@ -103,8 +106,8 @@ public class AppService {
 	 * @return
 	 * @throws IOException
 	 */
-	public static File generateTextFile(String text) throws IOException {
-		String outputFileName = "/temp.txt";
+	public File generateTextFile(String text) throws IOException {
+		String outputFileName = filePath+"/temp.txt";
 		File file = new File(outputFileName);
 		try {
 			FileWriter fileWriter = new FileWriter(file);
