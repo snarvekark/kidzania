@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import config from "../config";
 
 export default class PictureStory extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ export default class PictureStory extends Component {
     console.log("inside uploadImageAPI function");
     const fd = new FormData();
     fd.append("file", this.state.file);
-    var uploadResponse = await fetch("http://localhost:8080/api/uploadImage", {
+    var uploadResponse = await fetch(config.serverUrl+"/api/uploadImage", {
       //mode: 'no-cors',
       method: "POST",
       body: fd

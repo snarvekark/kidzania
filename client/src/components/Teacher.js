@@ -1,4 +1,5 @@
 import React from 'react';
+import config from "../config";
 import {
   BrowserRouter as Router,
   Route,
@@ -54,7 +55,7 @@ class Teacher extends React.Component {
     fd.append("content", this.state.content);
     fd.append("username", this.props.auth.user.username);
     console.log(this.props.auth.user.username);
-    fetch("http://localhost:8080/api/uploadStory", {
+    fetch(config.serverUrl+"/api/uploadStory", {
       mode: 'no-cors',
       method: "POST",
       body: fd
@@ -69,10 +70,12 @@ class Teacher extends React.Component {
       file: event.target.files[0]
     })
   };
+
   navigatePictureStory = () =>{
     console.log("navigation to picture story page")
     this.props.history.push("/PictureStory");
   }
+
   render() {
     return(
       <div>
