@@ -69,7 +69,10 @@ class Teacher extends React.Component {
       file: event.target.files[0]
     })
   };
-
+  navigatePictureStory = () =>{
+    console.log("navigation to picture story page")
+    this.props.history.push("/PictureStory");
+  }
   render() {
     return(
       <div>
@@ -78,10 +81,10 @@ class Teacher extends React.Component {
             <div className="col-sm-4">
               <ul className="nav nav-pills flex-column">
                 <li className="nav-item">
-                  <a className="nav-link active" href="#" onclick={this.StoryOptions}>Story Book</a>
+                  <a className="nav-link active" href="#" onClick={this.StoryOptions}>Story Book</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/PictureStory">Picture Story</a>
+                  <a className="nav-link" href="#" onClick={this.navigatePictureStory}>Picture Story</a>
                 </li>
               </ul>
               <hr className="d-sm-none" />
