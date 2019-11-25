@@ -7,6 +7,7 @@ import {
 import {Button} from 'react-bootstrap';
 import { Link, withRouter } from "react-router-dom";
 import { Auth } from "aws-amplify";
+import TeacherNav from './TeacherNav';
 
 class Teacher extends React.Component {
   constructor(props) {
@@ -75,17 +76,7 @@ class Teacher extends React.Component {
       <div>
         <div className="container" style={{marginTop: '30px'}}>
           <div className="row">
-            <div className="col-sm-4">
-              <ul className="nav nav-pills flex-column">
-                <li className="nav-item">
-                  <a className="nav-link active" href="#" onclick={this.StoryOptions}>Story Book</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/PictureStory">Picture Story</a>
-                </li>
-              </ul>
-              <hr className="d-sm-none" />
-            </div>
+            <TeacherNav />
             <div className="col-sm-8" id="content">
               <h2>Create A New Story</h2>
               <form>

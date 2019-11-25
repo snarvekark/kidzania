@@ -7,10 +7,12 @@ import {
 import { Link, withRouter } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import { jsxAttribute } from '@babel/types';
+import ReactDOM from 'react-dom';
+import ToggleDisplay from 'react-toggle-display';
 
 class Dashboard extends React.Component {
 
-   handleLogOut = async event => {
+  handleLogOut = async event => {
     event.preventDefault();
     try {
       Auth.signOut();
@@ -28,10 +30,6 @@ class Dashboard extends React.Component {
       <div>
         <div>
           <nav className="navbar navbar-expand-sm blue navbar-blue">
-<<<<<<< HEAD
-=======
-            
->>>>>>> 1e7803c55d566286f8a05a016e110b6eae18b647
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
               <span className="navbar-toggler-icon" />
             </button>

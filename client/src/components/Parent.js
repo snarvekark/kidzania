@@ -6,6 +6,7 @@ import {
   Switch,
   withRouter
 } from 'react-router-dom';
+import ParentNav from './ParentNav';
 
 
 class Parent extends React.Component {
@@ -40,17 +41,7 @@ class Parent extends React.Component {
         <div className="container" style={{marginTop: '30px'}}>
           <div className="row">
             <div className="col-sm-4">
-              <ul className="nav nav-pills flex-column">
-                <li className="nav-item">
-                  <a className="nav-link active" href="#">Class 1</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">Class 2</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">Class 3</a>
-                </li>
-             </ul>
+              <ParentNav />
               <hr className="d-sm-none" />
             </div>
             <div className="col-sm-8">
