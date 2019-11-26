@@ -20,7 +20,6 @@ import com.sjsu.aws.service.S3BucketService;
 @RestController
 @RequestMapping(value = "/api")
 @CrossOrigin(origins = "*")
-
 public class AppController {
 
 	@Autowired
