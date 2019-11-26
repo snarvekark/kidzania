@@ -91,6 +91,7 @@ public class PictureAssignmentLambdaHandler implements RequestHandler<PictureAss
 
   
   private List<PictureAssignment> getPictureAssignment(String username, int classnumber) {
+	  
     List<PictureAssignment> pictureList = null;
     System.out.println("username " + username);
     PictureAssignment picture = null;
@@ -115,6 +116,7 @@ public class PictureAssignmentLambdaHandler implements RequestHandler<PictureAss
         picture.setObject3(rs.getString("object3"));
         picture.setObject4(rs.getString("object4"));
         picture.setCreateddate(rs.getDate("createddate"));
+        
         pictureList.add(picture);
       }
       

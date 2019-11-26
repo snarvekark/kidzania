@@ -25,6 +25,7 @@ public class TeacherInfoLambdaHandler implements RequestHandler<TeacherInfoAPIRe
     LambdaLogger logger = context.getLogger();
     
     this.connection = DatabaseConnection.getDBConnection();
+    
     List<TeacherInfo> list = null;
     
     switch (input.getHttpMethod()) {

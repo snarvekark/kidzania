@@ -94,6 +94,7 @@ public class PictureAssignment {
 		this.createddate = createddate;
 	}
 
+	
 
 	@Override
 	public String toString() {
