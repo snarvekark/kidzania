@@ -18,8 +18,9 @@ import ParentNav from './ParentNav';
 export default class PictureAssignment extends Component {
   render() {
     return (
-      <div className="container" style={{marginTop: '30px'}}>
-           <div className="row">
+      <div className="container">
+           <center><h2 className="shadow">Guess My Name!!</h2></center>
+           <div className="row" style={{marginTop: '30px'}}>
             <div className="col-sm-2">
               <ParentNav />
               <hr className="d-sm-none" />

@@ -80,43 +80,46 @@ class LogIn extends Component {
     return (
       <section className="section auth">
         <div className="container">
-          <h1>Log in</h1>
+          <h1 className="text-center">Log in</h1>
           <FormErrors formerrors={this.state.errors} />
-
-          <form onSubmit={this.handleSubmit}>
-            <div className="form-group col-md-3">
-              <input 
-                className="form-control" 
-                type="text"
-                id="username"
-                aria-describedby="usernameHelp"
-                placeholder="Enter username or email"
-                value={this.state.username}
-                onChange={this.onInputChange}
-              />
-            </div>
-            <div className="form-group col-md-3">
-              <input 
-                className="form-control" 
-                type="password"
-                id="password"
-                placeholder="Password"
-                value={this.state.password}
-                onChange={this.onInputChange}
-              />
-              <span className="icon is-small is-left">
-                <i className="fas fa-lock"></i>
-              </span>
-            </div>
-            <div className="form-group col-md-3">
-              <a href="/forgotpassword">Forgot password?</a>
-            </div>
-            <div className="form-group col-md-3">
-              <button className="btn btn-primary">
-                Login
-              </button>
-            </div>
-          </form>
+          <div class="d-flex justify-content-center align-items-center container ">
+          <div className="row">
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-group">
+                <input 
+                  className="form-control" 
+                  type="text"
+                  id="username"
+                  aria-describedby="usernameHelp"
+                  placeholder="Enter username or email"
+                  value={this.state.username}
+                  onChange={this.onInputChange}
+                />
+              </div>
+              <div className="form-group">
+                <input 
+                  className="form-control" 
+                  type="password"
+                  id="password"
+                  placeholder="Password"
+                  value={this.state.password}
+                  onChange={this.onInputChange}
+                />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-lock"></i>
+                </span>
+              </div>
+              <div className="form-group">
+                <a href="/forgotpassword">Forgot password?</a>
+              </div>
+              <div className="form-group">
+                <button className="btn btn-primary">
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
         </div>
       </section>
     );
