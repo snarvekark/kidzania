@@ -22,7 +22,7 @@ public class TeacherInfoLambdaHandler implements RequestHandler<TeacherInfoAPIRe
     
 	TeacherInfo teacherinfo = null;
     
-    LambdaLogger logger = context.getLogger();
+    //LambdaLogger logger = context.getLogger();
     
     this.connection = DatabaseConnection.getDBConnection();
     
@@ -35,17 +35,17 @@ public class TeacherInfoLambdaHandler implements RequestHandler<TeacherInfoAPIRe
         if (postTeacherInfo(input.getTeacher())) {
           list = new ArrayList<>();
           teacherinfo = input.getTeacher();
-          logger.log("POST Completed");
+          System.out.println("POST Completed");
           list.add(teacherinfo);
         } 
         break;
 
       
       case "GET":
-        logger.log("Inside GET");
-        logger.log("before call " + input.getUsername());
+    	System.out.println("Inside GET");
+    	System.out.println("before call " + input.getUsername());
         list = getTeacherInfo(input.getUsername());
-        logger.log("GET Completed");
+        System.out.println("GET Completed");
         break;
     } 
     return list;
