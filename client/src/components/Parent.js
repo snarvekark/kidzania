@@ -16,6 +16,7 @@ class Parent extends React.Component {
       pictureNames : [],
       storyNames : [],
       selectedPicture : "",
+      selectedStory : "",
       fileUrl : "",
       picture : ""
     };
@@ -56,10 +57,18 @@ class Parent extends React.Component {
         console.log("Picture List : " + JSON.stringify(this.state.pictureNames));
       });
     console.log("Outside Picture Fetch");
+    if (this.state.pictureNames)
+    {
+      this.pictureList();
+    }
+    else
+    {
+      console.log("No pictures found");
+    }
 
     let storyURL =
     `https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/teacherinfo/?username="geethu"&classnumber=${clickedId}`;
-  fetch(storyURL)
+    fetch(storyURL)
     .then(response => response.json())
     .then(response => {
       this.setState({
@@ -67,10 +76,16 @@ class Parent extends React.Component {
       });
       console.log("Story List : " + JSON.stringify(this.state.storyNames));
     });
-  console.log("Outside Story Fetch");
+    console.log("Outside Story Fetch");
+    if (this.state.storyNames)
+      {
+        this.storyList();
+      }
+      else
+      {
+        console.log("No stories found");
+      }
     };
-
-    
 
     pictureList = () => {
       let arrayOfPicture = this.state.pictureNames;
