@@ -46,45 +46,52 @@ class Parent extends React.Component {
     event.preventDefault();
     var clickedId = event.target.id;
     console.log(clickedId);
-    let pictureURL =
-      `https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/pictureassignment?username="mike"&classnumber=${clickedId}`;
-    fetch(pictureURL)
-      .then(response => response.json())
-      .then(response => {
-        this.setState({
-          pictureNames: response
+    if (clickedId)
+    {
+      let pictureURL =
+        `https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/pictureassignment?username="mike"&classnumber=${clickedId}`;
+      fetch(pictureURL)
+        .then(response => response.json())
+        .then(response => {
+          this.setState({
+            pictureNames: response
+          });
+          console.log("Picture List : " + JSON.stringify(this.state.pictureNames));
         });
-        console.log("Picture List : " + JSON.stringify(this.state.pictureNames));
-      });
-    console.log("Outside Picture Fetch");
-    if (this.state.pictureNames)
-    {
-      this.pictureList();
-    }
-    else
-    {
-      console.log("No pictures found");
-    }
-
-    let storyURL =
-    `https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/teacherinfo/?username="geethu"&classnumber=${clickedId}`;
-    fetch(storyURL)
-    .then(response => response.json())
-    .then(response => {
-      this.setState({
-        storyNames: response
-      });
-      console.log("Story List : " + JSON.stringify(this.state.storyNames));
-    });
-    console.log("Outside Story Fetch");
-    if (this.state.storyNames)
+      console.log("Outside Picture Fetch");
+      if (this.state.pictureNames)
       {
-        this.storyList();
+        this.pictureList();
       }
       else
       {
-        console.log("No stories found");
+        console.log("No pictures found");
       }
+
+      let storyURL =
+      `https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/teacherinfo/?username="geethu"&classnumber=${clickedId}`;
+      fetch(storyURL)
+      .then(response => response.json())
+      .then(response => {
+        this.setState({
+          storyNames: response
+        });
+        console.log("Story List : " + JSON.stringify(this.state.storyNames));
+      });
+      console.log("Outside Story Fetch");
+      if (this.state.storyNames)
+        {
+          this.storyList();
+        }
+        else
+        {
+          console.log("No stories found");
+        }
+    }
+    else
+    {
+      console.log("Class not selected");
+    }
     };
 
     pictureList = () => {
