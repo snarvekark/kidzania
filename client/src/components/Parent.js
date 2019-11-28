@@ -70,9 +70,7 @@ class Parent extends React.Component {
   console.log("Outside Story Fetch");
     };
 
-    componentDidMount() {
-      this.classAssignment();
-    }
+    
 
     pictureList = () => {
       let arrayOfPicture = this.state.pictureNames;
