@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Icon } from 'semantic-ui-react';
-import TeacherNav from './TeacherNav';
+import ParentNav from './ParentNav';
 
 export default class StoryAssignment extends Component {
 
@@ -40,7 +40,7 @@ export default class StoryAssignment extends Component {
     <div>
         <div className="container" style={{marginTop: '30px'}}>
           <div className="row">
-            <TeacherNav />
+            <ParentNav />
             <div className="col-sm-8" id="content">
               <h3><label>Story Title: </label></h3>
               <div className="row">
