@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +21,10 @@ import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.transfer.Download;
 import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.TransferManagerBuilder;
+import com.sjsu.aws.LambdaHandler.TeacherInfoLambdaHandler;
+import com.sjsu.aws.model.TeacherInfo;
+import com.sjsu.aws.model.TeacherInfoAPIRequest;
+import com.sjsu.aws.util.Utilities;
 
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
@@ -30,6 +35,8 @@ import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.sql.Date;
+import java.util.Properties;
 
 @Service
 public class S3BucketService {
@@ -167,5 +174,23 @@ public class S3BucketService {
 	    }
 	    return text;
 	  }
-
+	
+		
+	public void postDataToDB(String username, String title) {
+		TeacherInfoAPIRequest input = new TeacherInfoAPIRequest();
+		TeacherInfo teacher = new TeacherInfo();
+		Properties properties = new Utilities().getProperties();
+		
+		teacher.setUsername(username);
+		teacher.setStoryTitle(title);
+		teacher.setStoryTextFile(title+".txt");
+		teacher.setCloudFrontTextFile(properties.getProperty("CLOUDFRONT_DOMAIN")+"/"+username+"/"+title+".txt");
+		teacher.setStoryPicture(title+".jpeg");
+		teacher.setStoryMp3(title+".mp3");
+		teacher.setCloudFrontmp3(properties.getProperty("CLOUDFRONT_DOMAIN")+"/"+username+"/"+title+".mp3");
+		teacher.setCreatedDate(new Date(new java.util.Date().getTime()));
+		input.setHttpMethod("POST");	
+		input.setTeacher(teacher);
+		new TeacherInfoLambdaHandler().handleRequest(input , null);		
+	}
 }
