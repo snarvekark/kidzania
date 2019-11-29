@@ -43,8 +43,8 @@ public class TeacherInfoLambdaHandler implements RequestHandler<TeacherInfoAPIRe
       
       case "GET":
     	System.out.println("Inside GET");
-    	System.out.println("before call " + input.getUsername());
-        list = getTeacherInfo(input.getUsername());
+    	
+        list = getTeacherInfo(input.getClassnumber());
         System.out.println("GET Completed");
         break;
     } 
@@ -85,15 +85,17 @@ public class TeacherInfoLambdaHandler implements RequestHandler<TeacherInfoAPIRe
     return result;
   }
   
-  private List<TeacherInfo> getTeacherInfo(String username) {
+  
+  //For Parent Page- Getting Stories assigned to the classnumber
+  private List<TeacherInfo> getTeacherInfo(String classnumber) {
     List<TeacherInfo> teacherList = null;
-    System.out.println("username " + username);
+    
     TeacherInfo teacherinfo = null;
 
     
     try {
-      PreparedStatement prepareStatement = this.connection.prepareStatement("select * from `TeacherInfo` where UserName = ?");
-      prepareStatement.setString(1, username);
+      PreparedStatement prepareStatement = this.connection.prepareStatement("select * from `TeacherInfo` where Classnumber = ?");
+      prepareStatement.setString(1, classnumber);
       ResultSet rs = prepareStatement.executeQuery();
       
       teacherList = new ArrayList<>();

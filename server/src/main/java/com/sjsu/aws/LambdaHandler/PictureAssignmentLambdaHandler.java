@@ -7,6 +7,7 @@ import com.sjsu.aws.model.PictureAssignment;
 import com.sjsu.aws.model.PictureAssignmentAPIRequest;
 import com.sjsu.aws.util.DatabaseConnection;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,8 +46,8 @@ public class PictureAssignmentLambdaHandler implements RequestHandler<PictureAss
       
       case "GET":
         logger.log("Inside GET");
-        logger.log("before call " + input.getUsername());
-        list = getPictureAssignment(input.getUsername(), input.getClassnumber());
+        
+        list = getPictureAssignment(input.getClassnumber());
         logger.log("GET Completed");
         break;
     } 
@@ -54,23 +55,24 @@ public class PictureAssignmentLambdaHandler implements RequestHandler<PictureAss
     return list;
   }
 
-  
+  //picture assignment post for picture story page
   private boolean postPictureAssignment(PictureAssignment picture) {
     boolean result = false;
 
     
     try {
-      PreparedStatement prepareStatement = this.connection.prepareStatement("INSERT INTO `PictureAssignment` (username,classnumber,picturename,object1,object2,object3,object4,createddate) VALUES (?,?,?,?,?,?,?,?)");
+      PreparedStatement prepareStatement = this.connection.prepareStatement("INSERT INTO `PictureAssignment` (username,classnumber,picturename,cloudfrontPictureFile,object1,object2,object3,object4,createddate) VALUES (?,?,?,?,?,?,?,?,?)");
       
-      System.out.println("teacher req " + picture);
+      System.out.println("picture assignment - post " + picture);
       prepareStatement.setString(1, picture.getUsername());
       prepareStatement.setInt(2, picture.getClassnumber());
-      prepareStatement.setString(3, picture.getPicturename());
-      prepareStatement.setString(4, picture.getObject1() + "_T");
-      prepareStatement.setString(5, picture.getObject2() + "_T");
-      prepareStatement.setString(6, picture.getObject3() + "_F");
-      prepareStatement.setString(7, picture.getObject4() + "_F");
-      prepareStatement.setDate(8, picture.getCreateddate());
+      prepareStatement.setString(4, picture.getPicturename());
+      prepareStatement.setString(3, picture.getCloudfrontpicturefile());
+      prepareStatement.setString(5, picture.getObject1() + "_T");
+      prepareStatement.setString(6, picture.getObject2() + "_T");
+      prepareStatement.setString(7, picture.getObject3() + "_F");
+      prepareStatement.setString(8, picture.getObject4() + "_F");
+      prepareStatement.setDate(9,new Date(new java.util.Date().getTime()));
 
       
       int rows = prepareStatement.executeUpdate();
@@ -89,18 +91,17 @@ public class PictureAssignmentLambdaHandler implements RequestHandler<PictureAss
     return result;
   }
 
-  
-  private List<PictureAssignment> getPictureAssignment(String username, int classnumber) {
+//For Parent page - getting pictures assigned to the classnumber
+  private List<PictureAssignment> getPictureAssignment(int classnumber) {
 	  
     List<PictureAssignment> pictureList = null;
-    System.out.println("username " + username);
+   
     PictureAssignment picture = null;
 
     
     try {
-      PreparedStatement prepareStatement = this.connection.prepareStatement("select * from `PictureAssignment` where username = ? and classnumber= ?");
-      prepareStatement.setString(1, username);
-      prepareStatement.setInt(2, classnumber);
+      PreparedStatement prepareStatement = this.connection.prepareStatement("select * from `PictureAssignment` where classnumber= ?");
+      prepareStatement.setInt(1, classnumber);
       ResultSet rs = prepareStatement.executeQuery();
       
       pictureList = new ArrayList<>();

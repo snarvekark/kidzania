@@ -8,6 +8,7 @@ public class PictureAssignment {
 	  private String username;
 	  private int classnumber;
 	  private String picturename;
+	  private String cloudfrontpicturefile;
 	  private String object1;
 	  private String object2;
 	  private String object3;
@@ -96,11 +97,22 @@ public class PictureAssignment {
 
 	
 
+	public String getCloudfrontpicturefile() {
+		return cloudfrontpicturefile;
+	}
+
+
+	public void setCloudfrontpicturefile(String cloudfrontpicturefile) {
+		this.cloudfrontpicturefile = cloudfrontpicturefile;
+	}
+
+
 	@Override
 	public String toString() {
 		return "PictureAssignment [username=" + username + ", classnumber=" + classnumber + ", picturename="
-				+ picturename + ", object1=" + object1 + ", object2=" + object2 + ", object3=" + object3 + ", object4="
-				+ object4 + ", createddate=" + createddate + "]";
+				+ picturename + ", cloudfrontpicturefile=" + cloudfrontpicturefile + ", object1=" + object1
+				+ ", object2=" + object2 + ", object3=" + object3 + ", object4=" + object4 + ", createddate="
+				+ createddate + "]";
 	}
 
 

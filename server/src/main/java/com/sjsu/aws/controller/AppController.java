@@ -63,5 +63,6 @@ public class AppController {
 		File imageFile = s3BucketService.convertMultiPartToFile(file);
 		s3BucketService.uploadFileTos3bucket(file.getOriginalFilename(), imageFile, "Pictures");
 		return appService.detectLabelsInFile(imageFile);
+		
 	}
 }
