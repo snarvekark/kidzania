@@ -7,13 +7,15 @@ import {
 import {Button} from 'react-bootstrap';
 import { Link, withRouter } from "react-router-dom";
 import TeacherNav from './TeacherNav';
+import { Auth } from "aws-amplify";
 
 class Library extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       story: "",
-      classroom: ""
+      classroom: "",
+      selectstory: []
     };
   }
   
@@ -25,7 +27,7 @@ class Library extends React.Component {
   }
 
   onInputChange = event => {
-    this.setState({
+    this.setState({ 
       [event.target.id]: event.target.value
     });
     document.getElementById(event.target.id).classList.remove("is-danger");
@@ -50,6 +52,30 @@ class Library extends React.Component {
     }
   };
 
+          
+    async componentDidMount() {
+        this.selectstoryAPI();
+      };
+
+  selectstoryAPI = async event => {
+    try{
+            fetch('https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/teacherstory?username="geethu"')
+            .then(res => res.json())
+            .then(res => {
+              this.setState({
+                  selectstory: res
+                });
+                console.log(this.state.selectstory);
+            });
+          }
+          catch(error){
+            console.log(error.message);
+            alert(error);
+          }
+        }
+      
+
+
   render() {
     return(
       <div>
@@ -63,8 +89,16 @@ class Library extends React.Component {
                 <label class="form-label">
                     Select Story
                     <select id="story" value={this.state.value} onChange={this.onInputChange} 
-                    aria-describedby="StoryHelp" placeholder="Select Story" class="form-control">
-                        <option value="default" defaultValue>Select</option>  
+                    aria-describedby="StoryHelp" placeholder="Select Story" className="form-control">
+                        <option value="default" defaultValue>Select</option>
+                        {this.state.selectstory.map(response => (
+                    <option
+                      key={response.selectstory}
+                      value={response.selectstory}
+                    >
+                      {response.selectstory}
+                    </option>
+                  ))}  
                         <option value="Story1">Story 1</option>
                         <option value="Story2">Story 2</option>
                         <option value="Story3">Story 3</option>
