@@ -5,6 +5,7 @@ public class TeacherInfoAPIRequest {
 	private String httpMethod;
 	
 	private String username;
+	private String classnumber;
 	
 	private TeacherInfo teacher;
 	
@@ -31,6 +32,14 @@ public class TeacherInfoAPIRequest {
 
 	public void setTeacher(TeacherInfo teacher) {
 		this.teacher = teacher;
+	}
+
+	public String getClassnumber() {
+		return classnumber;
+	}
+
+	public void setClassnumber(String classnumber) {
+		this.classnumber = classnumber;
 	}
 
 	
