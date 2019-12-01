@@ -24,6 +24,7 @@ import PictureStory from './components/PictureStory';
 import Library from './components/Library';
 import TeacherNav from './components/TeacherNav';
 import ParentNav from './components/ParentNav';
+import PictureLibrary from "./components/PictureLibrary";
 import { Auth } from "aws-amplify";
 
 class App extends React.Component
@@ -89,7 +90,8 @@ state = {
                 <Route exact path="/PictureStory" render={(props) => <PictureStory {...props} auth={authProps} />} />
                 <Route exact path="/Library" render={(props) => <Library {...props} auth={authProps} />} />
                 <Route exact path="/TeacherNav" render={(props) => <TeacherNav {...props} auth={authProps} />} />
-                <Route exact path="/ParentNav" render={(props) => <ParentNav {...props} auth={authProps} />} />          
+                <Route exact path="/ParentNav" render={(props) => <ParentNav {...props} auth={authProps} />} /> 
+                <Route exact path="/PictureLibrary" render={(props) => <PictureLibrary {...props} auth={authProps} />} />          
 	            </Switch>
 	          </div>
 	        </Router>
