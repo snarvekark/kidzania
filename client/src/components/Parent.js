@@ -144,7 +144,7 @@ class Parent extends React.Component {
             </div>
             <div className="col-sm-8">
               <h2>Welcome Parents</h2>
-              <h5>Select your Child's class to View Teacher Assigned Homework Labs</h5>
+              <h5 style={{marginTop: '30px'}}>Select your Child's class to View Teacher Assigned Homework Labs</h5>
               <div className="form-group col-md-5">
                 <label>Following Pictures were Assigned</label>
                 <select data-placeholder="Type a letter to search" multiple 
