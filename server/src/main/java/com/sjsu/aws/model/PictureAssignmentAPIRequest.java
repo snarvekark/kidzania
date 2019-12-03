@@ -6,6 +6,8 @@ public class PictureAssignmentAPIRequest {
 	
 	private String username;
 	private int classnumber;
+	private String picturename;
+	
 	private PictureAssignment picture;
 
 	public String getHttpMethod() {
@@ -24,13 +26,20 @@ public class PictureAssignmentAPIRequest {
 		this.username = username;
 	}
 
-
 	public int getClassnumber() {
 		return classnumber;
 	}
 
 	public void setClassnumber(int classnumber) {
 		this.classnumber = classnumber;
+	}
+
+	public String getPicturename() {
+		return picturename;
+	}
+
+	public void setPicturename(String picturename) {
+		this.picturename = picturename;
 	}
 
 	public PictureAssignment getPicture() {
@@ -40,6 +49,7 @@ public class PictureAssignmentAPIRequest {
 	public void setPicture(PictureAssignment picture) {
 		this.picture = picture;
 	}
+
 	
 	
 	
