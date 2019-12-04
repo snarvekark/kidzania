@@ -77,10 +77,12 @@ public class GuessMyNameLambdaHandler implements RequestHandler<PictureAssignmen
 				System.out.println("Labels is "+ rs.getString("object4") +"and the labelvalue is" +rs.getString("object4val"));
 			}
 			
+			
 		} catch (SQLException e) {
 		
 			e.printStackTrace();
 		}
+		listOfLabels.add(picturename);
 	    return listOfLabels;
 	}
 }
