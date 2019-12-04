@@ -91,7 +91,7 @@ public class PictureAssignmentLambdaHandler implements RequestHandler<PictureAss
     return result;
   }
 
-//For Parent page - getting pictures assigned to the classnumber
+//For Parent page - getting pictures assigned to the classnumber 
   private List<PictureAssignment> getPictureAssignment(int classnumber) {
 	  
     List<PictureAssignment> pictureList = null;
