@@ -14,14 +14,14 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.sjsu.aws.model.PictureAssignmentAPIRequest;
 import com.sjsu.aws.util.DatabaseConnection;
 
-public class GuessMyNameLambdaHandler implements RequestHandler<PictureAssignmentAPIRequest, Map<String, String>> {
+public class GuessMyNameLambdaHandler implements RequestHandler<PictureAssignmentAPIRequest, List<String>> {
 	
 	private Connection connection;
 	
 	@Override
-	public Map<String, String> handleRequest(PictureAssignmentAPIRequest input, Context context) {
+	public List<String> handleRequest(PictureAssignmentAPIRequest input, Context context) {
 		
-		Map<String, String>  listOfLabels = null;
+		List<String>  listOfLabels = null;
 		this.connection = DatabaseConnection.getDBConnection();
 		
 		switch (input.getHttpMethod()) {
@@ -39,9 +39,9 @@ public class GuessMyNameLambdaHandler implements RequestHandler<PictureAssignmen
 		return listOfLabels;
 	}
 	
-	private Map<String, String>  getLabels(String picturename,int classnumber){
+	private List<String>  getLabels(String picturename,int classnumber){
 		
-		Map<String, String> listOfLabels = new HashMap<>();
+		List<String> listOfLabels = null;
 		
 		
 		System.out.println("picture name is " + picturename);
@@ -58,12 +58,18 @@ public class GuessMyNameLambdaHandler implements RequestHandler<PictureAssignmen
 			prepareStatement.setString(1, picturename);
 			prepareStatement.setInt(2, classnumber);
 			ResultSet rs = prepareStatement.executeQuery();
+			listOfLabels= new ArrayList<String>();
 			
 			while (rs.next()) {
-				listOfLabels.put(rs.getString("object1"), rs.getString("object1val"));
-				listOfLabels.put(rs.getString("object2"), rs.getString("object2val"));
-				listOfLabels.put(rs.getString("object3"), rs.getString("object3val"));
-				listOfLabels.put(rs.getString("object4"), rs.getString("object4val"));
+				listOfLabels.add(rs.getString("object1"));
+				listOfLabels.add(rs.getString("object1val"));
+				listOfLabels.add(rs.getString("object2"));
+				listOfLabels.add(rs.getString("object2val"));
+				listOfLabels.add(rs.getString("object3"));
+				listOfLabels.add(rs.getString("object3val"));
+				listOfLabels.add(rs.getString("object4"));
+				listOfLabels.add(rs.getString("object4val"));
+				
 				
 				System.out.println("Labels is "+ rs.getString("object1") +"and the labelvalue is" +rs.getString("object1val"));
 				System.out.println("Labels is "+ rs.getString("object2") +"and the labelvalue is" +rs.getString("object2val"));
