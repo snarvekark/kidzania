@@ -7,15 +7,70 @@ import {
   withRouter
 } from 'react-router-dom';
 import ParentNav from './ParentNav';
-
-/*
-<ul class="shake-trigger">
-                  <li class="shake-slow">Panda</li>
-                  <li class="shake-slow">Tree</li>
-                  <li class="shake-slow">Tiger</li>
-                  <li class="shake-slow">Food</li>
-              </ul>*/
+import { Auth } from "aws-amplify";
+import axios from 'axios';
+              
 export default class PictureAssignment extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      apiResponse: [],
+      Object1: '',
+      Object2: '',
+      Object3: '',
+      Object4: '',
+      Object1Val:'',
+      Object2Val:'',
+      Object3Val:'',
+      Object4Val:'',
+      cloudfrontURL:''
+    };
+  }
+
+    componentDidMount() {
+    axios.get('https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/guessmyname?classnumber=1&picturename=pandapicture')
+  .then(response => {
+    this.setState({
+      apiResponse: response.data,
+      Object1: response.data[0].toUpperCase(),
+      Object2: response.data[2].toUpperCase(),
+      Object3: response.data[4].toUpperCase(),
+      Object4: response.data[6].toUpperCase(),
+      Object1Val:response.data[1],
+      Object2Val:response.data[3],
+      Object3Val:response.data[5],
+      Object4Val:response.data[7]
+    });
+   /* console.log(this.state.apiResponse.data[0]);
+    var str = response.data[0].object1;
+    console.log(str.replace('_T','')); //gives me panda
+    var parts = str.split('_');
+    var answer = parts[parts.length - 1];
+    console.log(answer); // gives me T*/
+  })
+  .catch(error => {
+    console.log(error);
+  });
+    };
+
+    checkans = async event => {
+      try
+      {
+        if (event.target.value=='T')
+        {
+          alert("Yayyy!! you guessed it Right.")
+        }
+        else{
+          alert("Oppss!! Try again. ")
+        }
+       
+      } catch (e) {
+        alert(e.message);
+      }
+    };
+
+
   render() {
     return (
       <div className="container">
@@ -31,26 +86,30 @@ export default class PictureAssignment extends Component {
               </div>
             </div>
             <div className="col-sm-2">
+              
               <div className="row shake-trigger">
-                <b><p className="shake-slow">Panda</p></b>
+                <b><p className="shake-slow">{this.state.Object1}</p></b>
+              </div> 
+              <div className="row shake-trigger">
+                <b><p className="shake-slow">{this.state.Object3}</p></b>
               </div>
               <div className="row shake-trigger">
-                <b><p className="shake-slow">Tree</p></b>
+                <b><p className="shake-slow">{this.state.Object2}</p></b>
               </div>
               <div className="row shake-trigger">
-                <b><p className="shake-slow">Tiger</p></b>
+                <b><p className="shake-slow">{this.state.Object4}</p></b>
               </div>
-              <div className="row shake-trigger">
-                <b><p className="shake-slow">Food</p></b>
-              </div>
+              
             </div>
             <div className="col-sm-3">
+
               <div className="row">
-                <a className="buttonclickme" data-micron="pop">Click Me!</a> 
-                <a className="buttonclickme" data-micron="pop">Click Me!</a> 
-                <a className="buttonclickme" data-micron="pop">Click Me!</a> 
-                <a className="buttonclickme" data-micron="pop">Click Me!</a> 
+                <button  className="buttonclickme" value={this.state.Object1Val} onClick={this.checkans}> Click me! </button>
+                <button  className="buttonclickme" value={this.state.Object3Val} onClick={this.checkans}> Click me! </button>
+                <button  className="buttonclickme" value={this.state.Object2Val} onClick={this.checkans}> Click me! </button>
+                <button  className="buttonclickme" value={this.state.Object4Val} onClick={this.checkans}> Click me! </button>
               </div> 
+              
             </div>
           </div>
         </div>
