@@ -17,13 +17,13 @@ class ParentNav extends React.Component {
             <div className="col-sm-20 sidebar">
               <ul className="nav nav-pills flex-column">
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Class 1</a>
+                  <a className="nav-link" href="/Parent">Class 1</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Class 2</a>
+                  <a className="nav-link" href="/Parent">Class 2</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Class 3</a>
+                  <a className="nav-link" href="/Parent">Class 3</a>
                 </li>
               </ul>
               <hr className="d-sm-none" />

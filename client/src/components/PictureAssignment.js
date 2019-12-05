@@ -24,12 +24,19 @@ export default class PictureAssignment extends Component {
       Object2Val:'',
       Object3Val:'',
       Object4Val:'',
-      cloudfrontURL:''
+      cloudfrontURL:'',
+      picturename:'',
+      classnumber:''
     };
   }
 
     componentDidMount() {
-    axios.get('https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/guessmyname?classnumber=1&picturename=pandapicture')
+      
+      console.log(localStorage.getItem('picturename'));
+      console.log(localStorage.getItem('classnumber'));
+      let api =
+        `https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/guessmyname?classnumber=${localStorage.getItem('classnumber')}&picturename=${localStorage.getItem('picturename')}`;
+    axios.get(api)
   .then(response => {
     this.setState({
       apiResponse: response.data,

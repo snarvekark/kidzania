@@ -18,10 +18,17 @@ class Parent extends React.Component {
       selectedPicture : "",
       selectedStory : "",
       fileUrl : "",
-      picture : ""
+      picture : "",
+      classnumber:''
     };
   }
 
+
+  selectpicture = async event =>
+  {
+    localStorage.setItem('classnumber', this.state.classnumber);
+    localStorage.setItem('picturename',event.target.value);
+  }
     handleSubmit = async event => {
        try
        {
@@ -45,7 +52,6 @@ class Parent extends React.Component {
   classAssignment = async event => {
     event.preventDefault();
     var clickedId = event.target.id;
-    console.log(clickedId);
     if (clickedId)
     {
       let pictureURL =
@@ -54,11 +60,12 @@ class Parent extends React.Component {
         .then(response => response.json())
         .then(response => {
           this.setState({
-            pictureNames: response
+            pictureNames: response,
+            classnumber: clickedId
           });
-          console.log("Picture List : " + JSON.stringify(this.state.pictureNames));
+          //console.log("Picture List : " + JSON.stringify(this.state.pictureNames));
         });
-      console.log("Outside Picture Fetch");
+      //console.log("Outside Picture Fetch");
       if (this.state.pictureNames)
       {
         this.pictureList();
@@ -76,9 +83,9 @@ class Parent extends React.Component {
         this.setState({
           storyNames: response
         });
-        console.log("Story List : " + JSON.stringify(this.state.storyNames));
+        //console.log("Story List : " + JSON.stringify(this.state.storyNames));
       });
-      console.log("Outside Story Fetch");
+      //console.log("Outside Story Fetch");
       if (this.state.storyNames)
         {
           this.storyList();
@@ -119,7 +126,7 @@ class Parent extends React.Component {
         });
       }
     };
-
+    
   render() { 
     return(
       <div>
@@ -148,7 +155,7 @@ class Parent extends React.Component {
               <div className="form-group col-md-5">
                 <label>Following Pictures were Assigned</label>
                 <select data-placeholder="Type a letter to search" multiple 
-                  name="picture_assigned" id="picture_assigned" className="form-control">
+                  name="picture_assigned" id="picture_assigned" className="form-control" onChange={this.selectpicture}>
                     <option value="default" defaultValue>
                       Select
                     </option>
