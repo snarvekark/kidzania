@@ -27,7 +27,7 @@ class Parent extends React.Component {
   selectpicture = async event =>
   {
     localStorage.setItem('classnumber', this.state.classnumber);
-    localStorage.setItem('picturename',event.target.value);
+    localStorage.setItem('picturename', event.target.value);
   }
     handleSubmit = async event => {
        try
@@ -150,7 +150,7 @@ class Parent extends React.Component {
               <hr className="d-sm-none" />
             </div>
             <div className="col-sm-8">
-              <h2>Welcome Parents</h2>
+              <h2>Welcome, Parents!!</h2>
               <h5 style={{marginTop: '30px'}}>Select your Child's class to View Teacher Assigned Homework Labs</h5>
               <div className="form-group col-md-5">
                 <label>Following Pictures were Assigned</label>
