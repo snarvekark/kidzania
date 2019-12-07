@@ -21,11 +21,32 @@ class Library extends React.Component {
     };
   }
   
-  validateForm() {
-    return (
-      this.state.story.length > 0 &&
-      this.state.classroom.length > 0
-    );
+  assingClass = async event => {
+    event.preventDefault();
+    let story = this.state.selectedStory;
+    let classnr = this.state.selectedClass;
+    console.log("Story : " + story + "Class : " + classnr); 
+    let classset = {
+      classnumber: classnr,
+      username: "bradpitt",
+      storyTitle: story
+    };
+    console.log("Inside method");
+      console.log(JSON.stringify(classset));
+      fetch(`https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/teacherstory`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+          },
+          body: JSON.stringify(classset)
+        }).then(response => {
+          console.log("Successful" + response);
+          alert("HW Assigned");
+          this.props.history.push("/Library");
+        }).catch(error=> {
+          console.log("Error" + error);
+          this.props.history.push("/Library");
+        });
   }
 
   onStoryChange = event => {
@@ -36,8 +57,7 @@ class Library extends React.Component {
     this.state.selectedClass = event.target.value;
   };
 
-
-          
+        
      async componentDidMount() {
         this.selectstoryAPI();
       };
@@ -96,19 +116,18 @@ class Library extends React.Component {
               <div className="form-group">
                 <label class="form-label">
                     Select Class
-                    <select id="classroom" onChange={this.onInputChange} 
+                    <select id="classroom" onChange={this.onClassChange} value={this.state.value}
                     aria-describedby="ClassHelp" placeholder="Select Class" class="form-control">
                         <option value="default" defaultValue>Select</option>  
-                        <option value="Class1">Class 1</option>
-                        <option value="Class2">Class 2</option>
-                        <option value="Class3">Class 3</option>
+                        <option value="1">Class 1</option>
+                        <option value="2">Class 2</option>
+                        <option value="3">Class 3</option>
                     </select>
                 </label>
               </div>
                 <div className="field">
                   <p className="control">
-                  <button type="submit" class="btn btn-primary" isLoading={this.state.isLoading}
-                    disabled={!this.validateForm()}>Assign</button>
+                  <button class="btn btn-primary" onClick={this.assingClass}>Assign</button>
                   </p>
                 </div>
             </div>
