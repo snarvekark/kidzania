@@ -34,7 +34,7 @@ class Dashboard extends React.Component {
               <span className="navbar-toggler-icon" />
             </button>
             <div className="collapse navbar-collapse" id="collapsibleNavbar">
-                <Link to="/Home" className="btn aqua-gradient">Home2</Link>
+                <Link to="/Home" className="btn aqua-gradient">Home</Link>
             </div>
             <div className="navbar-end">
               <div className="navbar-link">
