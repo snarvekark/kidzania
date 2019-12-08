@@ -63,7 +63,7 @@ export default class StoryAssignment extends Component {
                 </div>
                 <div className="col-sm-4">
                 <div>
-                <img src={this.imageurl} alt="Uploaded images" height="350" width="400"/>
+                <img src={this.imageurl} alt="Uploaded images" height="250" width="300"/>
               </div>
                 </div>
               </div>
