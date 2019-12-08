@@ -8,6 +8,7 @@ import {Button} from 'react-bootstrap';
 import { Link, withRouter } from "react-router-dom";
 import TeacherNav from './TeacherNav';
 import { Auth } from "aws-amplify";
+import axios from 'axios';
 
 class Library extends React.Component {
   constructor(props) {
@@ -20,33 +21,26 @@ class Library extends React.Component {
       selectedClass: ""
     };
   }
-  
+
   assingClass = async event => {
     event.preventDefault();
-    let story = this.state.selectedStory;
-    let classnr = this.state.selectedClass;
-    console.log("Story : " + story + "Class : " + classnr); 
-    let classset = {
-      classnumber: classnr,
-      username: "bradpitt",
-      storyTitle: story
-    };
-    console.log("Inside method");
-      console.log(JSON.stringify(classset));
-      fetch(`https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/teacherstory`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-          },
-          body: JSON.stringify(classset)
-        }).then(response => {
-          console.log("Successful" + response);
-          alert("HW Assigned");
-          this.props.history.push("/Library");
-        }).catch(error=> {
-          console.log("Error" + error);
-          this.props.history.push("/Library");
-        });
+    const user = await Auth.currentAuthenticatedUser();
+    console.log(user);
+  // post body data 
+  let classset = {
+    classnumber: this.state.selectedClass,
+    username: "geethu",
+    storyTitle: this.state.selectedStory
+  };
+    axios.put('https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/teacherstory', classset)
+    .then(response =>{
+      //console.log(response)
+      alert("Homework Assigned");
+      window.location.reload();
+    })
+    .catch(error=>{
+      console.log(error)
+    })
   }
 
   onStoryChange = event => {
