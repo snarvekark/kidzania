@@ -15,65 +15,82 @@ class Library extends React.Component {
     this.state = {
       story: "",
       classroom: "",
-      selectstory: []
+      storyNames: [],
+      selectedStory: "",
+      selectedClass: ""
     };
   }
   
-  validateForm() {
-    return (
-      this.state.story.length > 0 &&
-      this.state.classroom.length > 0
-    );
-  }
-
-  onInputChange = event => {
-    this.setState({ 
-      [event.target.id]: event.target.value
-    });
-    document.getElementById(event.target.id).classList.remove("is-danger");
-  }
-
-
-  handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-    console.log(this.state.value);
-  };
-
-  handleSubmit = async event => {
+  assingClass = async event => {
     event.preventDefault();
-    try
-    {
-      alert("Assigned Story");
-      this.props.history.push("/Teacher");
-    } catch (e) {
-      alert(e.message);
-    }
+    let story = this.state.selectedStory;
+    let classnr = this.state.selectedClass;
+    console.log("Story : " + story + "Class : " + classnr); 
+    let classset = {
+      classnumber: classnr,
+      username: "bradpitt",
+      storyTitle: story
+    };
+    console.log("Inside method");
+      console.log(JSON.stringify(classset));
+      fetch(`https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/teacherstory`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+          },
+          body: JSON.stringify(classset)
+        }).then(response => {
+          console.log("Successful" + response);
+          alert("HW Assigned");
+          this.props.history.push("/Library");
+        }).catch(error=> {
+          console.log("Error" + error);
+          this.props.history.push("/Library");
+        });
+  }
+
+  onStoryChange = event => {
+    this.state.selectedStory = event.target.value;
   };
 
-          
-    async componentDidMount() {
+  onClassChange = event => {
+    this.state.selectedClass = event.target.value;
+  };
+
+        
+     async componentDidMount() {
         this.selectstoryAPI();
       };
 
-  selectstoryAPI = async event => {
-    try{
-            fetch('https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/teacherstory?username="geethu"')
-            .then(res => res.json())
-            .then(res => {
-              this.setState({
-                  selectstory: res
-                });
-                console.log(this.state.selectstory);
-            });
-          }
-          catch(error){
-            console.log(error.message);
-            alert(error);
-          }
-        }
-      
+    selectstoryAPI() {
+      try{
+          fetch(`https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/teacherstory?username="geethu"`)
+          .then(response => response.json())
+          .then(response => {
+            this.setState({
+          storyNames: response
+        });
+        console.log("Story List : " + this.state.storyNames);
+          });
+        }
+        catch(error){
+          console.log(error.message);
+          alert(error);
+        }
+      };
+
+      storyList(){
+        let arrayOfStory = this.state.storyNames;
+        if (arrayOfStory) {
+          return arrayOfStory.map(data => {
+            return (
+              <option key={data} value={data}>
+                {data}
+              </option>
+            );
+          });
+        }
+      };
 
 
   render() {
@@ -84,46 +101,35 @@ class Library extends React.Component {
             <TeacherNav />
             <div className="col-sm-8" id="content">
               <h2>Assign Story to Class</h2>
-              <form onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label class="form-label">
                     Select Story
-                    <select id="story" value={this.state.value} onChange={this.onInputChange} 
+                    <select id="story" value={this.state.value} onChange={this.onStoryChange}
                     aria-describedby="StoryHelp" placeholder="Select Story" className="form-control">
-                        <option value="default" defaultValue>Select</option>
-                        {this.state.selectstory.map(response => (
-                    <option
-                      key={response.selectstory}
-                      value={response.selectstory}
-                    >
-                      {response.selectstory}
+                       <option value="default" defaultValue>
+                      Select
                     </option>
-                  ))}  
-                        <option value="Story1">Story 1</option>
-                        <option value="Story2">Story 2</option>
-                        <option value="Story3">Story 3</option>
+                    {this.storyList()}
                     </select>
                 </label>
               </div>
               <div className="form-group">
                 <label class="form-label">
                     Select Class
-                    <select id="classroom" value={this.state.value} onChange={this.onInputChange} 
+                    <select id="classroom" onChange={this.onClassChange} value={this.state.value}
                     aria-describedby="ClassHelp" placeholder="Select Class" class="form-control">
                         <option value="default" defaultValue>Select</option>  
-                        <option value="Class1">Class 1</option>
-                        <option value="Class2">Class 2</option>
-                        <option value="Class3">Class 3</option>
+                        <option value="1">Class 1</option>
+                        <option value="2">Class 2</option>
+                        <option value="3">Class 3</option>
                     </select>
                 </label>
               </div>
                 <div className="field">
                   <p className="control">
-                  <button type="submit" class="btn btn-primary" isLoading={this.state.isLoading}
-                    disabled={!this.validateForm()}>Assign</button>
+                  <button class="btn btn-primary" onClick={this.assingClass}>Assign</button>
                   </p>
                 </div>
-              </form>
             </div>
           </div>
         </div>
