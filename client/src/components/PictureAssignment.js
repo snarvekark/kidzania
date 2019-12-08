@@ -27,7 +27,7 @@ export default class PictureAssignment extends Component {
       cloudfrontURL:'',
       picturename:'',
       classnumber:'',
-      url:'https://d22zgkgj3mwq8f.cloudfront.net/Pictures/'
+      url:'https://d1s1t98ejjvvri.cloudfront.net/Pictures/'
     };
   }
 
