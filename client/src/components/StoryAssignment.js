@@ -9,8 +9,9 @@ export default class StoryAssignment extends Component {
     this.state = {
 
       play: false,
-      pause: true
-
+      pause: true,
+      texturl: "https://d1s1t98ejjvvri.cloudfront.net/geethu/This%20is%20my%20first%20story%20upload.txt",
+      textcontent: ""
     };
 
     this.url = "https://d1s1t98ejjvvri.cloudfront.net/geethu/This is my first story upload.mp3";
@@ -35,6 +36,17 @@ export default class StoryAssignment extends Component {
     this.audio.pause();
   }
 
+  async componentDidMount() 
+  {
+    fetch(this.state.texturl)
+    .then((r) => r.text())
+    .then(text  => {
+      console.log(text);
+      this.setState({
+        textcontent: text
+      });
+    })  
+  };
 
   render(){
   return (
@@ -47,7 +59,7 @@ export default class StoryAssignment extends Component {
               <h3><label>Story Title: </label></h3>
               <div className="row">
                 <div className="col-sm-7">
-                <textarea id="content" class="md-textarea form-control " rows="10" value={this.texturl}></textarea>
+                <textarea id="content" class="md-textarea form-control " rows="10" value={this.state.textcontent}></textarea>
                 </div>
                 <div className="col-sm-4">
                 <div>
@@ -68,6 +80,3 @@ export default class StoryAssignment extends Component {
   )
 }
 }
-
-
-
