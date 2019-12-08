@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import FormErrors from "../FormErrors";
 import Validate from "../utility/FormValidation";
 import { Auth } from "aws-amplify";
-import { Link, withRouter } from "react-router-dom";
+import {  withRouter } from "react-router-dom";
 
 class Register extends Component {
   state = {

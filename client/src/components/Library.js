@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from 'react-router-dom';
-import {Button} from 'react-bootstrap';
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import TeacherNav from './TeacherNav';
 import { Auth } from "aws-amplify";
 import axios from 'axios';
