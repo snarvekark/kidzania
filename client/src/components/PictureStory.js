@@ -43,6 +43,12 @@ class PictureStory extends React.Component {
       fileUrl : URL.createObjectURL(event.target.files[0])
     })
   };
+  onInputChange = event => {
+    this.setState({ 
+      [event.target.id]: event.target.value
+    });
+    document.getElementById(event.target.id).classList.remove("is-danger");
+  }
 
   render() {
     return (
@@ -92,6 +98,18 @@ class PictureStory extends React.Component {
                       <input type="text" placeholder="Add Labels" className="form-control"></input>
                     </div>
                   </div>
+                  <div className="form-group col-md-5">
+                <label class="form-label ">
+                    Select Class
+                    <select id="classroom" value={this.state.value} onChange={this.onInputChange} 
+                    aria-describedby="ClassHelp" placeholder="Select Class" class="form-control">
+                        <option value="default" defaultValue>Select</option>  
+                        <option value="1">Class 1</option>
+                        <option value="2">Class 2</option>
+                        <option value="3">Class 3</option>
+                    </select>
+                </label>
+              </div>
                   <div className="form-group col-md-5">
                     <button type="submit" class="btn btn-primary">
                       Submit Objects

@@ -26,7 +26,8 @@ export default class PictureAssignment extends Component {
       Object4Val:'',
       cloudfrontURL:'',
       picturename:'',
-      classnumber:''
+      classnumber:'',
+      url:'https://d22zgkgj3mwq8f.cloudfront.net/Pictures/'
     };
   }
 
@@ -47,7 +48,8 @@ export default class PictureAssignment extends Component {
       Object1Val:response.data[1],
       Object2Val:response.data[3],
       Object3Val:response.data[5],
-      Object4Val:response.data[7]
+      Object4Val:response.data[7],
+      url: this.state.url+localStorage.getItem('picturename')+'.jpeg'
     });
    /* console.log(this.state.apiResponse.data[0]);
     var str = response.data[0].object1;
@@ -89,7 +91,7 @@ export default class PictureAssignment extends Component {
             </div>
             <div className="col-sm-5">
               <div>
-                <img src='https://kidzaniapicture.s3.us-east-2.amazonaws.com/panda.jpeg' alt="Uploaded images" height="350" width="400"/>
+                <img src={this.state.url} alt="Uploaded images" height="350" width="400"/>
               </div>
             </div>
             <div className="col-sm-2">
