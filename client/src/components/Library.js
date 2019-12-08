@@ -18,20 +18,22 @@ class Library extends React.Component {
       classroom: "",
       storyNames: [],
       selectedStory: "",
-      selectedClass: ""
+      selectedClass: "",
+      username: ""
     };
   }
 
-  assingClass = async event => {
+  assingClass = async event => 
+  {
     event.preventDefault();
     const user = await Auth.currentAuthenticatedUser();
     console.log(user);
-  // post body data 
-  let classset = {
-    classnumber: this.state.selectedClass,
-    username: "geethu",
-    storyTitle: this.state.selectedStory
-  };
+    // post body data 
+    let classset = {
+      classnumber: this.state.selectedClass,
+      username: this.props.auth.user.username,
+      storyTitle: this.state.selectedStory
+    };
     axios.put('https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/teacherstory', classset)
     .then(response =>{
       //console.log(response)
@@ -51,40 +53,44 @@ class Library extends React.Component {
     this.state.selectedClass = event.target.value;
   };
 
-        
-     async componentDidMount() {
-        this.selectstoryAPI();
-      };
+  async componentDidMount() 
+  {
+      console.log(this.props.auth.user.username);
+      this.selectstoryAPI();
+  };
 
-    selectstoryAPI() {
-      try{
-          fetch(`https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/teacherstory?username="geethu"`)
-          .then(response => response.json())
-          .then(response => {
-            this.setState({
-          storyNames: response
-        });
-        console.log("Story List : " + this.state.storyNames);
-          });
-        }
-        catch(error){
-          console.log(error.message);
-          alert(error);
-        }
-      };
 
-      storyList(){
-        let arrayOfStory = this.state.storyNames;
-        if (arrayOfStory) {
-          return arrayOfStory.map(data => {
-            return (
-              <option key={data} value={data}>
-                {data}
-              </option>
-            );
-          });
-        }
-      };
+selectstoryAPI = async event => 
+{
+  var user = this.props.auth.user.username;
+  console.log(user);
+  if (user) 
+  {
+    let URL = `https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/teacherstory?username="${user}"`;
+    console.log(URL);
+    fetch(URL)
+        .then(response => response.json())
+        .then(response => {
+          this.setState({
+        storyNames: response
+      });
+      console.log("Story List : " + this.state.storyNames);
+      });
+    }
+  };
+
+storyList(){
+  let arrayOfStory = this.state.storyNames;
+  if (arrayOfStory) {
+    return arrayOfStory.map(data => {
+      return (
+        <option key={data} value={data}>
+          {data}
+        </option>
+      );
+    });
+  }
+};
 
 
   render() {
