@@ -76,14 +76,13 @@ class PictureStory extends React.Component {
     };
     console.log("Sending to DB : " + JSON.stringify(dbdata));
     axios.post('https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/pictureassignment', dbdata)
-    .then(response =>{
+    .then(response => {
       console.log(response)
       alert("Picture Homework Assigned");
     })
     .catch(error=>{
       console.log(error)
     })
-
   }
 
   render() {
