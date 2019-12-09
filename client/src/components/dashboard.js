@@ -1,14 +1,14 @@
 import React from 'react';
-import {
+import { Link, withRouter } from "react-router-dom";
+import { Auth } from "aws-amplify";
+/*import {
   BrowserRouter as Router,
   Route,
   Switch,
 } from 'react-router-dom';
-import { Link, withRouter } from "react-router-dom";
-import { Auth } from "aws-amplify";
 import { jsxAttribute } from '@babel/types';
 import ReactDOM from 'react-dom';
-import ToggleDisplay from 'react-toggle-display';
+import ToggleDisplay from 'react-toggle-display';*/
 
 class Dashboard extends React.Component {
 

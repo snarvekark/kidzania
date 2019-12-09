@@ -1,12 +1,4 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  Switch,
-  withRouter
-} from 'react-router-dom';
-import ParentNav from './ParentNav';
 
 class Parent extends React.Component {
   constructor(props) {
@@ -29,6 +21,11 @@ class Parent extends React.Component {
     localStorage.setItem('classnumber', this.state.classnumber);
     localStorage.setItem('picturename', event.target.value);
   }
+  selectstory = async event =>
+  {
+    localStorage.setItem('storytitle', event.target.value);
+  }
+
     handleSubmit = async event => {
        try
        {
@@ -172,7 +169,7 @@ class Parent extends React.Component {
               <div className="form-group col-md-5">
                 <label>Following Stories are Assigned</label>
                 <select data-placeholder="Type a letter to search" multiple 
-                  name="story_assigned" id="story_assigned" className="form-control">
+                  name="story_assigned" id="story_assigned" className="form-control" onChange={this.selectstory}>
                   <option value="default" defaultValue>
                       Select
                   </option>

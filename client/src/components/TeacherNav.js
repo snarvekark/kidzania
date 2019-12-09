@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from 'react-router-dom';
-import {Button} from 'react-bootstrap';
-import { Link, withRouter } from "react-router-dom";
-import { Auth } from "aws-amplify";
+import { withRouter } from "react-router-dom";
 
 class TeacherNav extends React.Component {
  render() {
@@ -27,9 +20,6 @@ class TeacherNav extends React.Component {
                   <ul>
                     <li>
                       <a href="/Library">Assign Story</a>
-                    </li>
-                    <li>
-                      <a href="/PictureLibrary">Assign Picture</a>
                     </li>
                   </ul>
                 </li>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Icon } from 'semantic-ui-react';
 import ParentNav from './ParentNav';
+import { Auth } from "aws-amplify";
 
 export default class StoryAssignment extends Component {
 
@@ -10,13 +11,13 @@ export default class StoryAssignment extends Component {
 
       play: false,
       pause: true,
-      texturl: "https://d1s1t98ejjvvri.cloudfront.net/geethu/This%20is%20my%20first%20story%20upload.txt",
+      texturl: "https://d1s1t98ejjvvri.cloudfront.net/geethu/"+localStorage.getItem('storytitle')+".txt",
       textcontent: ""
     };
 
-    this.url = "https://d1s1t98ejjvvri.cloudfront.net/geethu/This is my first story upload.mp3";
-    this.imageurl= "https://d1s1t98ejjvvri.cloudfront.net/geethu/This%20is%20my%20first%20story%20upload.jpg";
-    this.texturl = "https://d1s1t98ejjvvri.cloudfront.net/geethu/This%20is%20my%20first%20story%20upload.txt";
+    this.url = "https://d1s1t98ejjvvri.cloudfront.net/geethu/"+localStorage.getItem('storytitle')+".mp3";
+    this.imageurl= "https://d1s1t98ejjvvri.cloudfront.net/geethu/"+localStorage.getItem('storytitle')+".jpg";
+    this.texturl = "https://d1s1t98ejjvvri.cloudfront.net/geethu/"+localStorage.getItem('storytitle')+".txt";
     this.audio = new Audio(this.url);
     this.play = this.play.bind(this);
     this.pause = this.pause.bind(this);
@@ -38,6 +39,10 @@ export default class StoryAssignment extends Component {
 
   async componentDidMount() 
   {
+    console.log(localStorage.getItem('storytitle'));
+    console.log(this.imageurl,this.texturl,this.url);
+    const user = await Auth.currentAuthenticatedUser();
+    console.log(user);
     fetch(this.state.texturl)
     .then((r) => r.text())
     .then(text  => {

@@ -1,13 +1,5 @@
 import React , { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  Switch,
-  withRouter
-} from 'react-router-dom';
 import ParentNav from './ParentNav';
-import { Auth } from "aws-amplify";
 import axios from 'axios';
               
 export default class PictureAssignment extends Component {

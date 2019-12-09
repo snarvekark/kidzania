@@ -162,7 +162,7 @@ public class S3BucketService {
 	            bucketName, username+ "/" +key));
 	    System.out.println(s3object.getObjectMetadata().getContentType());
 	    System.out.println(s3object.getObjectMetadata().getContentLength());
-	    String text = null;
+	    String text = "";
 	    
 	    BufferedReader reader = new BufferedReader(new InputStreamReader(s3object.getObjectContent()));
 	    String line;
