@@ -77,6 +77,12 @@
   margin-bottom: 35px;
 }
 
+.col-sm-4
+{
+  margin-top: 10px;
+  margin-bottom: 35px;
+}
+
 .buttonclickme {
   text-align: center;
   cursor: pointer;
@@ -100,4 +106,8 @@
   margin-top: 20px;
   margin-bottom: 25px;
   
+}
+.alink{
+color: #8c1bab;
+font-size: 45px;
 }
