@@ -53,7 +53,7 @@ class Parent extends React.Component {
     if (clickedId)
     {
       let pictureURL =
-        `https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/pictureassignment?username="mike"&classnumber=${clickedId}`;
+        `https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/pictureassignment?classnumber=${clickedId}`;
       fetch(pictureURL)
         .then(response => response.json())
         .then(response => {
@@ -62,6 +62,7 @@ class Parent extends React.Component {
             classnumber: clickedId
           });
           //console.log("Picture List : " + JSON.stringify(this.state.pictureNames));
+          //console.log(this.state.pictureNames)
         });
       //console.log("Outside Picture Fetch");
       if (this.state.pictureNames)
@@ -74,7 +75,7 @@ class Parent extends React.Component {
       }
 
       let storyURL =
-      `https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/teacherinfo/?username="geethu"&classnumber=${clickedId}`;
+      `https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/teacherinfo/?classnumber=${clickedId}`;
       fetch(storyURL)
       .then(response => response.json())
       .then(response => {
