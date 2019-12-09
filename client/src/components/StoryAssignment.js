@@ -3,6 +3,7 @@ import { Icon } from 'semantic-ui-react';
 import ParentNav from './ParentNav';
 import { Auth } from "aws-amplify";
 import axios from 'axios';
+import { withRouter, Link } from "react-router-dom";
 
 export default class StoryAssignment extends Component {
 
@@ -70,7 +71,7 @@ export default class StoryAssignment extends Component {
               </div>
               <div className="row">
               <div className="col-sm-7">
-              <a className="alink" href={this.state.mp3url}>Listen to the story!!</a>
+              <Link className="alink" to={this.state.mp3url}>Listen to the story!!</Link>
               </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import TeacherNav from './TeacherNav';
 import { Auth } from "aws-amplify";
 import axios from 'axios';

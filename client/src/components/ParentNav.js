@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, withRouter } from "react-router-dom";
+import { Redirect, withRouter, Link } from "react-router-dom";
 
 class ParentNav extends React.Component {
   state = {
@@ -24,13 +24,13 @@ class ParentNav extends React.Component {
             <div className="col-sm-20 sidebar">
               <ul className="nav nav-pills flex-column">
                 <li className="nav-item">
-                  <a className="nav-link" href="#" onClick={this.setRedirect}>Class 1</a>
+                  <Link className="nav-link" href="#" onClick={this.setRedirect}>Class 1</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#" onClick={this.setRedirect}>Class 2</a>
+                  <Link className="nav-link" href="#" onClick={this.setRedirect}>Class 2</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#" onClick={this.setRedirect}>Class 3</a>
+                  <Link className="nav-link" href="#" onClick={this.setRedirect}>Class 3</Link>
                 </li>
               </ul>
               <hr className="d-sm-none" />

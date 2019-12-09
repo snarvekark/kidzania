@@ -16,7 +16,7 @@ class TeacherNav extends React.Component {
                   <Link id= "2" className="nav-link" to="/PictureStory">Create Picture Assignment</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Assign Homework</a>
+                  <Link className="nav-link" href="#">Assign Homework</Link>
                   <ul>
                     <li>
                       <Link id= "3" to="/Library">Assign Story</Link>
