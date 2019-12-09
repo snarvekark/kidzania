@@ -79,7 +79,6 @@ class PictureStory extends React.Component {
     .then(response =>{
       console.log(response)
       alert("Picture Homework Assigned");
-      window.location.reload();
     })
     .catch(error=>{
       console.log(error)

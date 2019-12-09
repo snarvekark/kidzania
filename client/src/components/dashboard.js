@@ -25,6 +25,13 @@ class Dashboard extends React.Component {
       console.log(error.message);
     }
   }
+
+  showDashboard = async event => {
+    if(this.props.auth.user.attributes.profile === "teacher")
+      this.props.history.push("/Teacher");
+    else
+      this.props.history.push("/Parent");
+  }
   render() {
     return(
       <div>
@@ -35,6 +42,13 @@ class Dashboard extends React.Component {
             </button>
             <div className="collapse navbar-collapse" id="collapsibleNavbar">
                 <Link to="/Home" className="btn aqua-gradient">Home</Link>
+            </div>
+            <div className="collapse navbar-collapse" id="collapsibleNavbar">
+              {this.props.auth.isAuthenticated && this.props.auth.user && (
+                <React.Fragment>
+                <Link onClick={this.showDashboard} className="btn aqua-gradient">My Dashboard</Link>
+                </React.Fragment>
+              )}
             </div>
             <div className="navbar-end">
               <div className="navbar-link">
