@@ -66,8 +66,8 @@ public class PictureAssignmentLambdaHandler implements RequestHandler<PictureAss
       System.out.println("picture assignment - post " + picture);
       prepareStatement.setString(1, picture.getUsername());
       prepareStatement.setInt(2, picture.getClassnumber());
-      prepareStatement.setString(4, picture.getPicturename());
-      prepareStatement.setString(3, picture.getCloudfrontpicturefile());
+      prepareStatement.setString(3, picture.getPicturename());
+      prepareStatement.setString(4, picture.getCloudfrontpicturefile());
       prepareStatement.setString(5, picture.getObject1() + "_T");
       prepareStatement.setString(6, picture.getObject2() + "_T");
       prepareStatement.setString(7, picture.getObject3() + "_F");
@@ -112,6 +112,7 @@ public class PictureAssignmentLambdaHandler implements RequestHandler<PictureAss
         picture.setUsername(rs.getString("username"));
         picture.setClassnumber(rs.getInt("classnumber"));
         picture.setPicturename(rs.getString("picturename"));
+        picture.setCloudfrontpicturefile("cloudfrontpicturefile");
         picture.setObject1(rs.getString("object1"));
         picture.setObject2(rs.getString("object2"));
         picture.setObject3(rs.getString("object3"));

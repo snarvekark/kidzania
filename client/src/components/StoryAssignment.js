@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Icon } from 'semantic-ui-react';
 import ParentNav from './ParentNav';
 import { Auth } from "aws-amplify";
+import axios from 'axios';
 
 export default class StoryAssignment extends Component {
 
@@ -11,38 +12,29 @@ export default class StoryAssignment extends Component {
 
       play: false,
       pause: true,
-      texturl: "https://d1s1t98ejjvvri.cloudfront.net/geethu/"+localStorage.getItem('storytitle')+".txt",
-      textcontent: ""
+      username:'',
+      imageurl:'',
+      mp3url:'',
+      texturl: '',
+      textcontent: ''
     };
-
-    this.url = "https://d1s1t98ejjvvri.cloudfront.net/geethu/"+localStorage.getItem('storytitle')+".mp3";
-    this.imageurl= "https://d1s1t98ejjvvri.cloudfront.net/geethu/"+localStorage.getItem('storytitle')+".jpg";
-    this.texturl = "https://d1s1t98ejjvvri.cloudfront.net/geethu/"+localStorage.getItem('storytitle')+".txt";
-    this.audio = new Audio(this.url);
-    this.play = this.play.bind(this);
-    this.pause = this.pause.bind(this);
-  }
-
-  play(){
-    this.setState({
-      play: true,
-      pause: false
-    });
-    console.log(this.audio);
-    this.audio.play();
-  }
-
-  pause(){
-  this.setState({ play: false, pause: true });
-    this.audio.pause();
   }
 
   async componentDidMount() 
   {
-    console.log(localStorage.getItem('storytitle'));
-    console.log(this.imageurl,this.texturl,this.url);
-    const user = await Auth.currentAuthenticatedUser();
-    console.log(user);
+    let url = "https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/storyassignment?storyTitle="+localStorage.getItem('storytitle')
+    axios.get(url)
+    .then(response => {
+      this.setState({
+        username: response.data
+      })
+      this.setState({
+        imageurl: "https://d1s1t98ejjvvri.cloudfront.net/"+this.state.username+"/"+localStorage.getItem('storytitle')+".jpg",
+        mp3url: "https://d1s1t98ejjvvri.cloudfront.net/"+this.state.username+"/"+localStorage.getItem('storytitle')+".mp3",
+        texturl: "https://d1s1t98ejjvvri.cloudfront.net/"+this.state.username+"/"+localStorage.getItem('storytitle')+".txt",
+      })
+      console.log(this.state.username,this.state.mp3url,this.state.texturl,this.state.imageurl)
+      })
     fetch(this.state.texturl)
     .then((r) => r.text())
     .then(text  => {
@@ -54,6 +46,10 @@ export default class StoryAssignment extends Component {
   };
 
   render(){
+    if (this.state.mp3url != null) { 
+      let abc = this.state.mp3url
+      console.log("my abc:", abc) }
+    
   return (
     
     <div>
@@ -68,12 +64,15 @@ export default class StoryAssignment extends Component {
                 </div>
                 <div className="col-sm-4">
                 <div>
-                <img src={this.imageurl} alt="Uploaded images" height="250" width="300"/>
+                <img src={this.state.imageurl} alt="Uploaded images" height="250" width="300"/>
               </div>
                 </div>
               </div>
               <div className="row">
               <div className="col-sm-3">
+              <audio controls>
+                <source src="https://d1s1t98ejjvvri.cloudfront.net/geethu/Test.mp3" type="audio/mpeg"/>
+              </audio>
               <button class="btn btn-primary" onClick={this.play}><Icon name ="play"></Icon></button>
               <button class="btn btn-primary play" onClick={this.pause}><Icon name ="pause"></Icon></button>
               </div>

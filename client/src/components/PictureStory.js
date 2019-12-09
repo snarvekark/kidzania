@@ -75,20 +75,6 @@ class PictureStory extends React.Component {
       cloudfrontpicturefile: this.state.imageurl+"Pictures/"+this.state.picturename+".jpg"
     };
     console.log("Sending to DB : " + JSON.stringify(dbdata));
-    /*fetch(config.serverUrl+"/api/postPictureAssignment", {
-      mode: 'no-cors',
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-        },
-        body: JSON.stringify(dbdata)
-      }).then(response => {
-        console.log("Successful" + response);
-        this.props.history.push("/PictureStory");
-      }).catch(error=> {
-        console.log("Error" + error);
-        this.props.history.push("/PictureStory");
-      });*/
     axios.post('https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/pictureassignment', dbdata)
     .then(response =>{
       console.log(response)
