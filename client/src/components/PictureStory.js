@@ -12,7 +12,8 @@ class PictureStory extends React.Component {
       file: null,
       rekognitionRes : [],
       fileUrl : "",
-      rek_objects : ""
+      rek_objects : "",
+      imageurl: "https://d1s1t98ejjvvri.cloudfront.net/"
     };
   }
   
@@ -69,23 +70,20 @@ class PictureStory extends React.Component {
       object2: this.state.rek_objects[1],
       object3: this.state.object3,
       object4: this.state.object4,
-      classnumber: this.state.classroom
+      classnumber: this.state.classroom,
+      picturename: this.state.picturename,
+      cloudfrontpicturefile: this.state.imageurl+"Pictures/"+this.state.picturename+".jpg"
     };
     console.log("Sending to DB : " + JSON.stringify(dbdata));
-    fetch(config.serverUrl+"/api/postPictureAssignment", {
-      mode: 'no-cors',
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-        },
-        body: JSON.stringify(dbdata)
-      }).then(response => {
-        console.log("Successful" + response);
-        this.props.history.push("/PictureStory");
-      }).catch(error=> {
-        console.log("Error" + error);
-        this.props.history.push("/PictureStory");
-      });
+    axios.post('https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/pictureassignment', dbdata)
+    .then(response =>{
+      console.log(response)
+      alert("Picture Homework Assigned");
+      //window.location.reload();
+    })
+    .catch(error=>{
+      console.log(error)
+    })
 
   }
 
@@ -150,16 +148,19 @@ class PictureStory extends React.Component {
                     </select>
                 </label>
               </div>
-                  <div className="form-group col-md-5">
-                    <button type="submit" class="btn btn-primary">
-                      Submit Objects
-                    </button>
-                  </div>
-                </form>
+              <div className="form-group col-md-3">
+                <input id="picturename" value={this.state.picturename} onChange={this.onInputChange} type="text" placeholder="Assignment Name" className="form-control"></input>
               </div>
-            </div>
+              <div className="form-group col-md-5">
+                <button type="submit" class="btn btn-primary">
+                  Submit Objects
+                </button>
+              </div>
+            </form>
           </div>
         </div>
+      </div>
+    </div>
     );
   }
 }

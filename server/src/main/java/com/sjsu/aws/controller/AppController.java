@@ -35,6 +35,11 @@ public class AppController {
 	@Autowired
 	AppService appService;
 
+	@GetMapping("/hello")
+	public String helloWorld(){
+		return "Hello World";
+	}
+	
 	@PostMapping("/uploadStory")
 	public void updateObject(@RequestPart(value = "file", required = false) MultipartFile file,
 			@RequestPart(value = "content") String content, @RequestPart(value = "title") String title,
