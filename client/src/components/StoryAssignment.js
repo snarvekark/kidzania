@@ -61,7 +61,7 @@ export default class StoryAssignment extends Component {
               <h3><label>Story Title: </label></h3>
               <div className="row">
                 <div className="col-sm-7">
-                <textarea id="content" class="md-textarea form-control " rows="14" value={this.state.textcontent}></textarea>
+                <iframe src={this.state.texturl}> </iframe>
                 </div>
                 <div className="col-sm-4">
                 <div>
@@ -71,7 +71,7 @@ export default class StoryAssignment extends Component {
               </div>
               <div className="row">
               <div className="col-sm-7">
-              <Link className="alink" to={this.state.mp3url}>Listen to the story!!</Link>
+              <a className="alink" href={this.state.mp3url} target="_blank">Listen to the story!!</a>
               </div>
               </div>
             </div>
