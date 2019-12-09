@@ -79,7 +79,7 @@ class PictureStory extends React.Component {
     .then(response =>{
       console.log(response)
       alert("Picture Homework Assigned");
-      //window.location.reload();
+      window.location.reload();
     })
     .catch(error=>{
       console.log(error)
@@ -95,7 +95,7 @@ class PictureStory extends React.Component {
             <TeacherNav />
             <div className="col-sm-8" id="content">
               <h2>Create A New Picture Assignment</h2>
-                <form onSubmit={this.handleSubmit}> 
+                <form onSubmit={this.handleSubmit.bind(this)}> 
                   <div class="form-group col-md-5">
                     <label>Select a Picture</label>
                     <input
