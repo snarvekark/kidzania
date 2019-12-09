@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import { Icon } from 'semantic-ui-react';
 import ParentNav from './ParentNav';
-import { Auth } from "aws-amplify";
 import axios from 'axios';
-import { withRouter, Link } from "react-router-dom";
-import Iframe from 'react-iframe';
 
 export default class StoryAssignment extends Component {
 
@@ -59,14 +55,14 @@ export default class StoryAssignment extends Component {
           <div className="row">
             <ParentNav />
             <div className="col-sm-8" id="content">
-              <h3><label>Story Title: </label></h3>
+              <h3><label>Story Title:{localStorage.getItem('storytitle')} </label></h3>
               <div className="row">
                 <div className="col-sm-7">
-                <Iframe className="embed-responsive-item" src={this.state.texturl}> </Iframe>
+                <iframe className="frameclass" src={this.state.texturl}> </iframe>
                 </div>
                 <div className="col-sm-4">
                 <div>
-                <img src={this.state.imageurl} alt="Uploaded images" height="300" width="300"/>
+                <img src={this.state.imageurl} alt="Uploaded images" height="320" width="400"/>
               </div>
                 </div>
               </div>
