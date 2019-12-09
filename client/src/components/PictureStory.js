@@ -3,14 +3,16 @@ import { withRouter } from "react-router-dom";
 import TeacherNav from './TeacherNav';
 import React, { Component } from "react";
 import config from "../config";
-
+import ReactDOM from "react-dom";
+import axios from 'axios';
 class PictureStory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       file: null,
       rekognitionRes : [],
-      fileUrl : ""
+      fileUrl : "",
+      rek_objects : ""
     };
   }
   
@@ -37,10 +39,54 @@ class PictureStory extends React.Component {
     })
   };
   onInputChange = event => {
-    this.setState({ 
+    this.setState({
       [event.target.id]: event.target.value
     });
-    document.getElementById(event.target.id).classList.remove("is-danger");
+
+  }
+
+  handleChange = event => {
+    var options = event.target.options;
+    var value = [];
+    for (var i = 0, l = options.length; i < l; i++) {
+      if (options[i].selected) {
+        value.push(options[i].value);
+      }
+    }
+    console.log("Object : " + value);
+    this.state.rek_objects = value;
+    console.log("State Value : " + this.state.rek_objects);
+  }
+
+  handleSubmit = async event => {
+    event.preventDefault();
+    let picturedata = this.state;
+    console.log(JSON.stringify(picturedata));
+    let classnumber = picturedata.classroom;
+    let dbdata = {
+      username: this.props.auth.user.username,
+      object1: this.state.rek_objects[0],
+      object2: this.state.rek_objects[1],
+      object3: this.state.object3,
+      object4: this.state.object4,
+      classnumber: this.state.classroom
+    };
+    console.log("Sending to DB : " + JSON.stringify(dbdata));
+    fetch(config.serverUrl+"/api/postPictureAssignment", {
+      mode: 'no-cors',
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+        },
+        body: JSON.stringify(dbdata)
+      }).then(response => {
+        console.log("Successful" + response);
+        this.props.history.push("/PictureStory");
+      }).catch(error=> {
+        console.log("Error" + error);
+        this.props.history.push("/PictureStory");
+      });
+
   }
 
   render() {
@@ -51,7 +97,7 @@ class PictureStory extends React.Component {
             <TeacherNav />
             <div className="col-sm-8" id="content">
               <h2>Create A New Picture Assignment</h2>
-                <form> 
+                <form onSubmit={this.handleSubmit}> 
                   <div class="form-group col-md-5">
                     <label>Select a Picture</label>
                     <input
@@ -73,7 +119,8 @@ class PictureStory extends React.Component {
                   <div className="form-group col-md-5">
                     <label>Following Objects were detected</label>
                     <select data-placeholder="Type a letter to search" multiple 
-                      name="objects_detected" id="objects_detected" className="form-control">
+                      name="objects_detected" id="objects_detected" className="form-control"
+                      value={this.props.arrayOfOptionValues} onChange={this.handleChange} >
                       <option>{this.state.rekognitionRes[0]}</option>
                       <option>{this.state.rekognitionRes[1]}</option>
                       <option>{this.state.rekognitionRes[2]}</option>
@@ -85,10 +132,10 @@ class PictureStory extends React.Component {
                       Additional lables for selection
                     </label>
                     <div>
-                      <input type="text" placeholder="Add Labels" className="form-control"></input>
+                      <input id="object3" value={this.state.object3} onChange={this.onInputChange} type="text" placeholder="Add Labels" className="form-control"></input>
                     </div>
                     <div>
-                      <input type="text" placeholder="Add Labels" className="form-control"></input>
+                      <input id="object4" value={this.state.object4} onChange={this.onInputChange} type="text" placeholder="Add Labels" className="form-control"></input>
                     </div>
                   </div>
                   <div className="form-group col-md-5">
