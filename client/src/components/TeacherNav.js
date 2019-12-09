@@ -21,9 +21,6 @@ class TeacherNav extends React.Component {
                     <li>
                       <a href="/Library">Assign Story</a>
                     </li>
-                    <li>
-                      <a href="/PictureLibrary">Assign Picture</a>
-                    </li>
                   </ul>
                 </li>
               </ul>
