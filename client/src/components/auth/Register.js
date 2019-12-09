@@ -3,6 +3,8 @@ import FormErrors from "../FormErrors";
 import Validate from "../utility/FormValidation";
 import { Auth } from "aws-amplify";
 import {  withRouter } from "react-router-dom";
+import axios from 'axios';
+import moment from 'moment';
 
 class Register extends Component {
   state = {
@@ -68,6 +70,21 @@ class Register extends Component {
         }
       });
     }
+
+    let classset = {
+      username:this.state.username,
+	    profile:this.state.profile,
+	    createdDate:moment().format()
+    };
+    console.log(classset);
+    axios.post('https://p21kqnf0a9.execute-api.us-west-1.amazonaws.com/dev/userinfo', classset)
+    .then(response =>{
+      console.log(response)
+    })
+    .catch(error=>{
+      console.log(error)
+    })
+
   }
 
   onInputChange = event => {
