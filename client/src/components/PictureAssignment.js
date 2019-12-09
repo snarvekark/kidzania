@@ -41,7 +41,7 @@ export default class PictureAssignment extends Component {
       Object2Val:response.data[3],
       Object3Val:response.data[5],
       Object4Val:response.data[7],
-      url: this.state.url+localStorage.getItem('picturename')+'.jpeg'
+      url: this.state.url+localStorage.getItem('picturename')+'.jpg'
     });
    /* console.log(this.state.apiResponse.data[0]);
     var str = response.data[0].object1;
